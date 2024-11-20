@@ -13,6 +13,21 @@
                         Главная
                     </RouterLink>
                 </li>
+                <li>
+                    <RouterLink class="header__link" :to="{ name: 'Applications' }">
+                        Объявления
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink class="header__link" :to="{ name: 'Main' }">
+                        Главная
+                    </RouterLink>
+                </li>
+                <li>
+                    <RouterLink class="header__link" :to="{ name: 'Main' }">
+                        Главная
+                    </RouterLink>
+                </li>
             </ul>
         </nav>
     </header>
@@ -28,10 +43,16 @@
     align-items: center;
     gap: 2rem;
     align-content: center;
-    color: $primary-color; // .header__log-link
+    background-color: $teriary-color;
+    color: $primary-color;
+    border: 3px solid $primary-color;
+    @include innerContainer; // .header__log-link
 
     &__logo-link {
         grid-area: logo-link;
+        background-color: $secondary-color;
+        border: 1px solid $secondary-color;
+        border-radius: 15px;
     }
 
     // .header__logo
@@ -60,7 +81,7 @@
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-
+        margin-top: 30px;
     }
 
     // .header__link
@@ -71,18 +92,20 @@
         text-decoration: none;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
+        margin-top: 50px;
         padding: 15px;
         border: solid 3px $primary-color;
-        border-radius: 15px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
         background-color: $primary-color;
         font-weight: bold;
         font-size: 15pt;
 
 
         &:hover {
-            color: $teriary-color;
+            color: $secondary-color;
             border: solid 3px $secondary-color;
-            background-color: white;
+            background-color: $primary-color;
         }
     }
 }

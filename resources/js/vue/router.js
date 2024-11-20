@@ -7,6 +7,7 @@ import {
 } from 'vue-router';
 
 // Импорт компонентов (страниц сайта).
+const Applications = () => import('./components/pages/Applications.vue');
 const Main = () => import('./components/pages/Main.vue');
 
 // Роуты (страницы сайта).
@@ -15,7 +16,12 @@ const routes = [
         path: '/',
         name: 'Main',
         component: Main
-    }
+    },
+    {
+        path: '/applications',
+        name: 'Applications',
+        component: Applications
+    },
 ];
 
 // Создание экземпляра Vue-роутера.
