@@ -8,6 +8,9 @@ import {
 
 // Импорт компонентов (страниц сайта).
 const Applications = () => import('./components/pages/Applications.vue');
+const ApplicationShow = () => import('./components/pages/ApplicationShow.vue');
+const ApplicationCreate = () => import('./components/pages/ApplicationCreate.vue');
+const ApplicationUpdate = () => import('./components/pages/ApplicationUpdate.vue');
 const Main = () => import('./components/pages/Main.vue');
 
 // Роуты (страницы сайта).
@@ -21,6 +24,24 @@ const routes = [
         path: '/applications',
         name: 'Applications',
         component: Applications
+    },
+    {
+        path: '/applications/:id',
+        name: 'ApplicationShow',
+        component: ApplicationShow,
+        props: true
+    },
+    {
+        path: '/applications/update/:id',
+        name: 'ApplicationUpdate',
+        component: ApplicationUpdate,
+        props: true
+    },
+    {
+        path: '/applications/create',
+        name: 'ApplicationCreate',
+        component: ApplicationCreate,
+        props: true
     },
 ];
 

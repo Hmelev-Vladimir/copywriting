@@ -6,6 +6,7 @@ const props = defineProps({
         required: true
     }
 });
+const emit = defineEmits(['deleteApplication']);
 </script>
 
 <template>
@@ -19,6 +20,18 @@ const props = defineProps({
             <p class="application-card__publicationDate">
                 {{ new Date(application.publicationDate).toLocaleString() }}
             </p>
+            <div class="application-card__btn-container">
+                <RouterLink class="application-card__btn"
+                    :to="{ name: 'ApplicationShow', params: { id: application.id } }">
+                    Посмотреть
+                </RouterLink>
+                <RouterLink class="application-card__btn"
+                    :to="{ name: 'ApplicationUpdate', params: { id: application.id } }">
+                    Редактировать
+                </RouterLink>
+                <button class="application-card__btn" type="button"
+                    @click="emit('deleteApplication', application)">Удалить</button>
+            </div>
         </div>
     </article>
 </template>
@@ -88,6 +101,20 @@ const props = defineProps({
         align-self: end;
         padding: 5px;
         color: grey;
+    }
+
+    &__btn {
+        @include btn;
+    }
+
+    &__btn-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
     }
 }
 </style>

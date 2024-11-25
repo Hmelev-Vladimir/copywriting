@@ -1,20 +1,3 @@
+@forward 'vars';
+@forward 'mixin';
 @use 'form';
-$primary-color: #3d5a80;
-$secondary-color: #ee6c4d;
-$teriary-color: #293241;
-$error-color: red;
-
-@mixin outerContainer {
-    margin-left: max(50px, 5%);
-    margin-right: max(50px, 5%);
-}
-
-@mixin innerContainer {
-    padding-left: max(50px, 5%);
-    padding-right: max(50px, 5%);
-}
-
-@mixin title {
-    font-size: 2rem;
-    padding-bottom: 0.5rem;
-}

@@ -17,6 +17,7 @@ class Application extends Model
         'status',
         'reason',
         'publicationDate',
+        'cover',
     ];
 
     public function user(): BelongsTo

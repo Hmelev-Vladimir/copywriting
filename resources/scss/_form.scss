@@ -1,0 +1,55 @@
+@use 'vars';
+@use 'mixin';
+
+.form {
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    gap: 1rem;
+
+    &__row {
+        display: grid;
+        grid-auto-rows: max-content;
+        grid-auto-flow: row;
+        gap: 0.5rem;
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        text-align: center;
+
+        &_error {
+            color: vars.$error-color;
+        }
+    }
+
+    &__input {
+        display: inline-block;
+        background-color: transparent;
+        border-bottom: 2px solid vars.$secondary-color;
+        border-radius: 5px;
+        padding: 0.5rem 0.25rem;
+        transition: all 0.2s ease-in-out;
+        color: vars.$primary-color;
+
+        &:hover,
+        &:focus {
+            background-color: vars.$primary-color;
+            color: vars.$secondary-color;
+            border-color: vars.$secondary-color;
+        }
+
+        &_error {
+            color: vars.$error-color;
+        }
+    }
+
+    &__error {
+        color: vars.$error-color;
+    }
+
+    &__btn {
+        @include mixin.btn;
+        justify-self: center;
+    }
+}

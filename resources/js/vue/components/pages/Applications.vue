@@ -19,18 +19,35 @@ function getList() {
         .finally(() => { console.log('finally'); });
 };
 
+
+function deleteApplication(application) {
+    if (confirm('Хотите удалить данное объявление?')) {
+        axios.delete('/api/applications/delete', { params: { id: application.id } })
+            .then((response) => {
+                console.log(response);
+                const index = applications.indexOf(application);
+                applications.splice(index, 1);
+            }).catch((error) => {
+                console.log(error.response);
+                alert('Ошибка! Объявления с подобным id нет');
+            });
+
+    }
+}
+
 onBeforeMount(() => {
     getList();
 });
-
-
 </script>
 
 <template>
     <section class="posts">
         <h1 class="posts__title">Обьявления</h1>
+        <RouterLink class="posts__btn" :to="{ name: 'ApplicationCreate' }">Новое объявление</RouterLink>
         <div class="posts__container">
-            <ApplicationCard v-for="application in applications" :application="application"></ApplicationCard>
+            <ApplicationCard v-for="application in applications" :application="application"
+                @deleteApplication="deleteApplication">
+            </ApplicationCard>
         </div>
     </section>
 </template>
@@ -54,6 +71,13 @@ onBeforeMount(() => {
     }
 
     // .posts__container
+    &__btn {
+        grid-area: btn;
+        @include btn;
+        margin-bottom: 10px;
+        font-size: 15pt;
+        text-align: center;
+    }
 
     &__container {
         grid-area: container;
