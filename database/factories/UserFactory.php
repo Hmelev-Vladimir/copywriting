@@ -21,9 +21,11 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = ['male', 'female'][rand(0, 1)];
         return [
-            'name' => fake()->name(),
-            'surname' => fake()->name(),
+            'name' => fake()->firstName($gender),
+            'surname' => fake()->lastName($gender),
+            'login' => fake()->unique()->word(),
             'phone' => fake()->phoneNumber(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),

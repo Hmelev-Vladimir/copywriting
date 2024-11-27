@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'surname',
+        'login',
         'phone',
         'role',
         'email',
@@ -29,6 +30,20 @@ class User extends Authenticatable
         'balance',
     ];
 
+    protected $appends = ['full_name'];
+
+    protected function fullName(): Attribute
+    {
+    return Attribute::make(
+        get: function () {
+            $fullName = $this->surname . ' ' . $this->name;
+            if ($this->patronymic !== null) {
+                $fullName .= ' ' . $this->patronymic;
+            }
+            return $fullName;
+        },
+    );
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

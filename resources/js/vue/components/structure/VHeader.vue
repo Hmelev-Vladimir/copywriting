@@ -1,10 +1,20 @@
+<script setup>
+import Logout from '../pages/auth/partials/Logout.vue';
+</script>
 <template>
     <header class="header">
+        <RouterLink class="header__link" :to="{ name: 'Register' }" v-if="$auth.user.role === 'guest'">
+            Регистрация
+        </RouterLink>
         <RouterLink class="header__logo-link" :to="{ name: 'Main' }">
             <!-- Пример подключения логотипа. -->
             <!-- Логотип должен находиться в папке public/images. -->
             <img class="header__logo" src="/images/logo.png" alt="Название приложения">
         </RouterLink>
+        <RouterLink class="header__link" :to="{ name: 'Login' }" v-if="$auth.user.role === 'guest'">
+            Вход
+        </RouterLink>
+        <Logout v-if="$auth.user.role !== 'guest'"></Logout>
         <nav class="header__nav">
             <ul class="header__list">
                 <!-- Пример подключения ссылки. -->

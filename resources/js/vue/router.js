@@ -1,17 +1,27 @@
 // Импорт функций создания экземпляра Vue-роутера и создания истории.
+
 import {
     createRouter,
     createWebHistory,
     createWebHashHistory,
 
 } from 'vue-router';
-
+import $auth from './global/$auth';
 // Импорт компонентов (страниц сайта).
 const Applications = () => import('./components/pages/Applications.vue');
 const ApplicationShow = () => import('./components/pages/ApplicationShow.vue');
 const ApplicationCreate = () => import('./components/pages/ApplicationCreate.vue');
 const ApplicationUpdate = () => import('./components/pages/ApplicationUpdate.vue');
 const Main = () => import('./components/pages/Main.vue');
+const Login = () => import('./components/pages/auth/Login.vue');
+const Register = () => import('./components/pages/auth/Register.vue');
+const AdminPanel = () => import('./components/pages/auth/admin/AdminPanel.vue');
+const UserProfile = () => import('./components/pages/auth/user/UserProfile.vue');
+
+
+// Добавить роут в массив роутов.
+
+// Добавить роут в массив роутов.
 
 // Роуты (страницы сайта).
 const routes = [
@@ -19,6 +29,30 @@ const routes = [
         path: '/',
         name: 'Main',
         component: Main
+    },
+    {
+        path: '/register',
+        name: 'Register',
+        component: Register,
+        meta: { role: 'guest' }
+    },
+    {
+        path: '/AdminPanel',
+        name: 'AdminPanel',
+        component: AdminPanel,
+        meta: { role: 'admin' }
+    },
+    {
+        path: '/UserProfile',
+        name: 'UserProfile',
+        component: UserProfile,
+        meta: { role: 'user' }
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+        meta: { role: 'guest' }
     },
     {
         path: '/applications',
@@ -49,6 +83,23 @@ const routes = [
 const router = createRouter({
     routes: routes,
     history: createWebHistory()
+});
+router.beforeResolve(function (to, from, next) {
+    // Проверка, имеет ли роут свойство middleware в объекте meta.
+    if (to.meta.middleware) {
+        // Если да, то проверяем, может ли текущий пользователь перейти на этот роут
+        // (есть ли у него права).
+        if ($auth.user.role === to.meta.role) {
+            // Если да, то пускаем пользователя на роут.
+            next();
+        } else {
+            // Если нет, то редиректим на стартовую страницу (общедоступную).
+            next({ name: 'Main' });
+        }
+    } else {
+        // Если нет, то пускаем пользователя на роут.
+        next();
+    }
 });
 
 // Экспорт экземпляра Vue-роутера.
