@@ -24,6 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'surname' => ['required', 'string', 'between:1,255'],
             'name' => ['required', 'string', 'between:1,255'],
+            'phone' => ['required', 'regex:/^\\+?[1-9][0-9]{7,14}$/i'],
             'email' => ['required', 'email', 'between:1,255', 'unique:users'],
             'login' => ['required', 'string', 'between:1,255', 'unique:users'],
             'password' => ['required', 'string', 'between:6,255', 'confirmed']

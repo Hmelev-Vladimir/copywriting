@@ -104,6 +104,15 @@ function register() {
                 </div>
             </div>
             <div class="form__row">
+                <label class="form__label" :class="{ 'form__label_error': errors.phone !== null }" for="phone">Номер
+                    телефона</label>
+                <input class="form__input" :class="{ 'form__input_error': errors.phone !== null }" type="tel"
+                    name="phone" id="phone" placeholder="Введите номер телефона" v-model="formData.phone">
+                <div class="form__error" v-if="errors.phone !== null">
+                    {{ errors.phone }}
+                </div>
+            </div>
+            <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.login !== null }"
                     for="login">Логин</label>
                 <input class="form__input" :class="{ 'form__input_error': errors.login !== null }" type="text"
