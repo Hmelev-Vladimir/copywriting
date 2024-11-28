@@ -33,7 +33,7 @@ function login() {
             switch ($auth.user.role) {
                 case 'user':
                     router.push({
-                        name: 'UserAccount'
+                        name: 'UserProfile'
                     });
                     break;
                 case 'admin':
@@ -65,21 +65,7 @@ function login() {
                     {{ error }}
                 </div>
             </div>
-            <!-- <div class="form__row">
-            <label class="form__label"
-                :class="{ 'form__label_error': error !== null }"
-                for="login">Электронная почта</label>
-            <input class="form__input"
-                :class="{ 'form__input_error': error !== null }"
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Введите электронную почту"
-                v-model="formData.email">
-            <div class="form__error" v-if="error !== null">
-                {{ error }}
-            </div>
-        </div> -->
+
             <div class="form__row">
                 <label class="form__label" for="password">Пароль</label>
                 <input class="form__input" type="password" name="password" id="password" placeholder="Введите пароль"

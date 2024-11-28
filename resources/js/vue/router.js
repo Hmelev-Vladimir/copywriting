@@ -86,7 +86,7 @@ const router = createRouter({
 });
 router.beforeResolve(function (to, from, next) {
     // Проверка, имеет ли роут свойство middleware в объекте meta.
-    if (to.meta.middleware) {
+    if (to.meta.role) {
         // Если да, то проверяем, может ли текущий пользователь перейти на этот роут
         // (есть ли у него права).
         if ($auth.user.role === to.meta.role) {

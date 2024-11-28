@@ -3,73 +3,100 @@ import Logout from '../pages/auth/partials/Logout.vue';
 </script>
 <template>
     <header class="header">
-        <RouterLink class="header__link" :to="{ name: 'Register' }" v-if="$auth.user.role === 'guest'">
-            Регистрация
-        </RouterLink>
         <RouterLink class="header__logo-link" :to="{ name: 'Main' }">
             <!-- Пример подключения логотипа. -->
             <!-- Логотип должен находиться в папке public/images. -->
             <img class="header__logo" src="/images/logo.png" alt="Название приложения">
         </RouterLink>
-        <RouterLink class="header__link" :to="{ name: 'Login' }" v-if="$auth.user.role === 'guest'">
-            Вход
-        </RouterLink>
-        <Logout v-if="$auth.user.role !== 'guest'"></Logout>
-        <nav class="header__nav">
-            <ul class="header__list">
-                <!-- Пример подключения ссылки. -->
-                <li>
-                    <RouterLink class="header__link" :to="{ name: 'Main' }">
-                        Главная
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink class="header__link" :to="{ name: 'Applications' }">
-                        Объявления
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink class="header__link" :to="{ name: 'Main' }">
-                        Главная
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink class="header__link" :to="{ name: 'Main' }">
-                        Главная
-                    </RouterLink>
-                </li>
-            </ul>
-        </nav>
+        <div class="header__navbars">
+            <nav class="header__nav-lower">
+                <ul class="header__list">
+                    <li v-if="$auth.user.role === 'guest'">
+                        <RouterLink class="header__link" :to="{ name: 'Register' }">
+                            Регистрация
+                        </RouterLink>
+                    </li>
+                    <li v-if="$auth.user.role === 'guest'">
+                        <RouterLink class="header__link" :to="{ name: 'Login' }">
+                            Вход
+                        </RouterLink>
+                    </li>
+                    <li v-if="$auth.user.role !== 'guest'">
+                        <Logout></Logout>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="header__nav-upper">
+                <ul class="header__list-up">
+                    <!-- Пример подключения ссылки. -->
+
+                    <li>
+                        <RouterLink class="header__link-up" :to="{ name: 'Main' }">
+                            Главная
+                        </RouterLink>
+                    </li>
+                    <li v-if="$auth.user.role === 'user'">
+                        <RouterLink class="header__link-up" :to="{ name: 'Applications' }">
+                            Объявления
+                        </RouterLink>
+                    </li>
+                    <li v-if="$auth.user.role === 'admin'">
+                        <RouterLink class="header__link-up" :to="{ name: 'AdminPanel' }">
+                            Панель администратора
+                        </RouterLink>
+                    </li>
+                    <li v-if="$auth.user.role === 'user'">
+                        <RouterLink class="header__link-up" :to="{ name: 'UserProfile' }">
+                            Профиль пользователя
+                        </RouterLink>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </header>
 </template>
 
 <style lang="scss">
 .header {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    @include innerContainer;
     display: grid;
     grid-template-columns: max-content 1fr;
-    grid-template-areas: 'logo-link nav';
+    grid-template-areas: 'logo-link navbars';
     align-items: center;
     gap: 2rem;
     align-content: center;
-    background-color: $teriary-color;
-    color: $primary-color;
-    border: 3px solid $primary-color;
-    @include innerContainer; // .header__log-link
+    background-color: $primary-color;
+
+    @include mobile {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, max-content);
+        grid-template-areas: 'logo-link' 'navbars';
+        gap: 1rem;
+        justify-items: center;
+    }
 
     &__logo-link {
         grid-area: logo-link;
-        background-color: $secondary-color;
-        border: 1px solid $secondary-color;
-        border-radius: 15px;
+    }
+
+    &__navbars {
+        display: grid;
+        grid-template-rows: max-content max-content;
+        grid-auto-flow: row;
+        grid-template-areas: 'nav-upper' 'nav-lower';
+        grid-area: navbars;
+        gap: 1rem;
     }
 
     // .header__logo
 
     &__logo {
-        width: 50px;
+        width: 150px;
         transition: transform 0.2s ease-in-out;
+
+
+        filter: brightness(0) saturate(100%) invert(49%) sepia(67%) saturate(783%) hue-rotate(326deg) brightness(99%) contrast(89%);
+        border-radius: 15px;
 
         &:hover {
             transform: scale(1.1);
@@ -77,10 +104,34 @@ import Logout from '../pages/auth/partials/Logout.vue';
     }
 
     // .header__nav
+    &__nav-lower {
+        grid-area: nav-lower;
+        align-self: end;
 
-    &__nav {
-        grid-area: nav;
+    }
 
+    &__nav-upper {
+        margin-right: calc(max(50px, 5%) * -1);
+        grid-area: nav-upper;
+        align-self: start;
+    }
+
+    &__list-up {
+        list-style-type: none;
+        background-color: $secondary-color;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: top;
+
+        @include mobile {
+            flex-direction: column;
+            align-self: center;
+        }
     }
 
     // .header__list
@@ -91,31 +142,52 @@ import Logout from '../pages/auth/partials/Logout.vue';
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-        margin-top: 30px;
+        align-items: center;
+
+
+        @include mobile {
+            flex-direction: column;
+            align-self: center;
+        }
     }
 
     // .header__link
+    &__link-up {
+        font-size: 12pt;
+        color: $teriary-color;
+        text-decoration: none;
+        margin-left: 5px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        transition: all 0.2s ease-in-out;
+        background: transparent;
+        cursor: pointer;
+        border: 2px solid $teriary-color;
+        padding: 15px;
+        display: inline-block;
+
+        &:hover {
+            background-color: $teriary-color;
+            color: $secondary-color;
+        }
+    }
 
     &__link {
-        display: inline;
+        display: inline-block;
         color: $secondary-color;
+        border: 3px solid $teriary-color;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
         text-decoration: none;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
-        margin-top: 50px;
+        background-color: $teriary-color;
         padding: 15px;
-        border: solid 3px $primary-color;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        background-color: $primary-color;
-        font-weight: bold;
-        font-size: 15pt;
-
+        font-size: 14pt;
 
         &:hover {
-            color: $secondary-color;
-            border: solid 3px $secondary-color;
-            background-color: $primary-color;
+            background-color: $secondary-color;
+            color: $teriary-color;
         }
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -22,6 +23,10 @@ class AuthController extends Controller
         $user = User::where('login', $request->login)->first();
         // Также можно делать это по адресу электронной почты.
         // $user = User::where('email', $request->email)->first();
+
+        Log::info($request->all());
+        Log::info($user);
+
 
         // Если пользователь с переданными данными не найден, выдаем ошибку.
         if ($user === null || !Hash::check($request->password, $user->password)) {
