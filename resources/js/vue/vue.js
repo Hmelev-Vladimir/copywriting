@@ -1,4 +1,4 @@
-import { createApp } from 'vue/dist/vue.esm-bundler';
+import { createApp } from 'vue';
 const app = createApp();
 import $auth from './global/$auth';
 app.config.globalProperties.$auth = $auth;

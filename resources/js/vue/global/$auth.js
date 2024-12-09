@@ -147,6 +147,7 @@ const $auth = reactive({
         full_name: '',
         login: '',
         email: '',
+        pic: 'profile.jpg',
         phone: '',
         // Роль по умолчанию - посетитель (неавторизованный пользователь).
         role: 'guest',
@@ -167,6 +168,7 @@ const $auth = reactive({
             this.email = user.email;
             this.role = user.role;
             this.phone = user.phone;
+            this.pic = user.pic;
         },
         /**
          * Сбрасывает свойства текущего объекта до значений по умолчанию.
@@ -182,6 +184,7 @@ const $auth = reactive({
             this.login = '';
             this.email = '';
             this.phone = '';
+            this.pic = 'profile.jpg';
             this.role = 'guest';
         },
         /**

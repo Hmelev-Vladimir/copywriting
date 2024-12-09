@@ -17,6 +17,7 @@ const Login = () => import('./components/pages/auth/Login.vue');
 const Register = () => import('./components/pages/auth/Register.vue');
 const AdminPanel = () => import('./components/pages/auth/admin/AdminPanel.vue');
 const UserProfile = () => import('./components/pages/auth/user/UserProfile.vue');
+const UserProfileUpdate = () => import('./components/pages/auth/user/UserProfileUpdate.vue');
 
 
 // Добавить роут в массив роутов.
@@ -47,6 +48,12 @@ const routes = [
         name: 'UserProfile',
         component: UserProfile,
         meta: { role: 'user' }
+    },
+    {
+        path: '/user/update/:id',
+        name: 'UserProfileUpdate',
+        component: UserProfileUpdate,
+        props: true
     },
     {
         path: '/login',

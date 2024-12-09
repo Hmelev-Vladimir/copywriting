@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ProfileController;
 
 Route::prefix('applications')-> group(function () {
     Route::get('getList', [ApplicationController::class,'getList']);
@@ -23,9 +24,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('passwordReset', [AuthController::class, 'passwordReset']);
 
+
     // Только для пользователей с ролью user (пользователь).
     Route::middleware('ability:user')->group(function () {
         // Роуты.
+        Route::prefix('user')-> group(function () {
+            Route::post('update', [ProfileController::class,'update']);
+        });
     });
 
     // Только для пользователей с ролью admin (администратор).
@@ -33,5 +38,3 @@ Route::middleware('auth:sanctum')->group(function () {
         // Роуты.
     });
 });
-
-// Только для авторизованных пользователей.

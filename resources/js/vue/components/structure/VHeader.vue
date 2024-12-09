@@ -1,5 +1,6 @@
 <script setup>
 import Logout from '../pages/auth/partials/Logout.vue';
+
 </script>
 <template>
     <header class="header">
@@ -51,6 +52,14 @@ import Logout from '../pages/auth/partials/Logout.vue';
                         </RouterLink>
                     </li>
                 </ul>
+                <ul class="header__list-up_second">
+                    <li v-if="$auth.user.role === 'user'">
+                        <div class="header__container">
+                            <img class="header__userPic" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
+                            <p class="header__h2">{{ $auth.user.login }}</p>
+                        </div>
+                    </li>
+                </ul>
             </nav>
         </div>
     </header>
@@ -88,7 +97,38 @@ import Logout from '../pages/auth/partials/Logout.vue';
         gap: 1rem;
     }
 
-    // .header__logo
+
+
+    // .header__container
+
+    &__container {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        grid-template-areas:
+            'pic info';
+        padding: 5px;
+
+    }
+
+    // .header__userPic
+
+    &__userPic {
+        width: 50px;
+        grid-area: pic;
+        border-radius: 15px;
+    }
+
+    // .header__h2
+
+    &__h2 {
+        padding-top: 10px;
+        margin-left: 10px;
+        grid-area: info;
+        font-size: 15pt;
+
+    }
+
+
 
     &__logo {
         width: 150px;
@@ -111,16 +151,21 @@ import Logout from '../pages/auth/partials/Logout.vue';
     }
 
     &__nav-upper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 'list list2';
         margin-right: calc(max(50px, 5%) * -1);
         grid-area: nav-upper;
         align-self: start;
-    }
-
-    &__list-up {
-        list-style-type: none;
         background-color: $secondary-color;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
+    }
+
+    &__list-up {
+        grid-area: list;
+        list-style-type: none;
+
         padding-bottom: 20px;
         display: flex;
         flex-direction: row;
@@ -132,6 +177,13 @@ import Logout from '../pages/auth/partials/Logout.vue';
             flex-direction: column;
             align-self: center;
         }
+    }
+
+    &__list-up_second {
+        display: grid;
+        grid-area: list2;
+        justify-content: end;
+        list-style-type: none;
     }
 
     // .header__list
