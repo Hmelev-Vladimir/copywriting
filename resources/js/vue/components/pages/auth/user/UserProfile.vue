@@ -1,5 +1,26 @@
 <script setup>
-import $auth from '../../../../global/$auth';
+import { reactive, ref } from 'vue';
+import $auth from '#/$auth';
+import axios from 'axios';
+const emit = defineEmits(['send-form']);
+
+const pic = ref(null);
+
+function uploadImg(event) {
+    console.log(event);
+    if (event.target.files[0] instanceof File) {
+        pic.value = event.target.files[0];
+    } else {
+        pic.value = null;
+    }
+
+
+}
+
+const errors = reactive({
+    pic: '',
+});
+
 </script>
 <template>
     <section class="userProfile">
@@ -11,8 +32,8 @@ import $auth from '../../../../global/$auth';
                 <li class="userProfile-info__listItem">Телефон: {{ $auth.user.phone }}</li>
                 <li class="userProfile-info__listItem">Email: {{ $auth.user.email }}</li>
             </ul>
-            <div class="application-card__btn-container">
-                <RouterLink class="application-card__btn"
+            <div class="userProfile-info__btn-container">
+                <RouterLink class="userProfile-info__btn"
                     :to="{ name: 'UserProfileUpdate', params: { id: $auth.user.id } }">
                     Редактировать
                 </RouterLink>
@@ -20,6 +41,24 @@ import $auth from '../../../../global/$auth';
         </div>
         <div class="userProfile-image">
             <img class="userProfile-image__cover" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
+            <form class="form" @submit.prevent="emit('send-form')">
+                <!-- Другие поля формы. -->
+                <div class="form__row">
+                    <label class="form__label" :class="{ form__label_error: errors.cover !== null }" for="cover">
+                        Изменить изображение профиля
+                    </label>
+                    <input class="form__input" :class="{ form__input_error: errors.cover !== null }" name="cover"
+                        id="cover" type="file" accept="image/*" @change="uploadImg">
+                    <div class="form__error" v-if="errors.cover !== null">
+                        {{ errors.cover }}
+                    </div>
+
+                </div>
+                <!-- Другие поля формы. -->
+                <button class="form__btn" type="submit">
+                    Изменить профиль
+                </button>
+            </form>
         </div>
     </section>
 </template>
@@ -37,6 +76,24 @@ import $auth from '../../../../global/$auth';
 
 .userProfile-info {
     grid-area: info;
+
+    &__btn-container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
+        box-shadow: 0px 0px 3px 0px $primary-color;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
+    &__btn {
+        @include btn;
+    }
 
     &__h2 {
         font-size: 20pt;

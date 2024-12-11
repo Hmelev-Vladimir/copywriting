@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\ProfileUpdateRequest;
 
@@ -40,8 +40,11 @@ class ProfileController extends Controller
         // Подмена файла изображения его названием и расширением.
 
         $profile = $profile->update(array_merge(
-            $request->except(['pic']),
-            ['pic' => $path]
+            $request->except(['pic', 'password']),
+            [
+                'pic' => $path,
+                'password' => Hash::make($request->password)
+            ]
         ));
         return response()->json([
             'profile' => $profile

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PicController;
 
 Route::prefix('applications')-> group(function () {
     Route::get('getList', [ApplicationController::class,'getList']);
@@ -30,6 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
         // Роуты.
         Route::prefix('user')-> group(function () {
             Route::post('update', [ProfileController::class,'update']);
+            Route::post('update', [PicController::class,'update']);
         });
     });
 
