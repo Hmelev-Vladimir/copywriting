@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\ProfilePicRequest;
+
 
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\Request;
+
 
 
 class PicController extends Controller
 {
     //
 
-    public function update (ProfileUpdateRequest $request) {
+    public function updatePic (ProfilePicRequest $request) {
         $profile = $request->user();
 
         // Получение публичного диска.
@@ -22,31 +23,31 @@ class PicController extends Controller
 
         // По умолчанию выбираем старое изображением из базы данных.
         $path =  $profile->pic;
-    }
-    if ($request->pic !== null) {
-        if (
-            // Если изображение не является заглушкой.
-            $profile->pic !== 'profile.jpg' &&
-            // А также существует на диске.
-            $disk->exists($profile->pic)
-        ) {
-            // То удаляем его.
-            $disk->delete($profile->pic);
-        }
+        if ($request->pic !== null) {
+            if (
+                // Если изображение не является заглушкой.
+                $profile->pic !== 'profile.jpg' &&
+                // А также существует на диске.
+                $disk->exists($profile->pic)
+            ) {
+                // То удаляем его.
+                $disk->delete($profile->pic);
+            }
 
-        // Загрузка изображения с записью названия и расширения в переменную $path.
-        $path = $disk->put('', $request->pic);
+            // Загрузка изображения с записью названия и расширения в переменную $path.
+            $path = $disk->put('', $request->pic);
+        }
+        //
+            $profile = $profile->update(array_merge(
+                $request->except(['pic']),
+                [
+                    'pic' => $path,
+                ]
+            ));
+            return response()->json([
+                'pic' => $path
+            ], 200);
     }
-    //
-        $profile = $profile->update(array_merge(
-            $request->except(['pic']),
-            [
-                'pic' => $path,
-            ]
-        ));
-        return response()->json([
-            'profile' => $profile
-        ], 200);
 
 
 }

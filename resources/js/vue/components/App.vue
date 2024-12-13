@@ -32,7 +32,7 @@ import VFooter from "./structure/VFooter.vue";
         'footer';
     min-height: 100vh;
 
-    color: &__header {
+    &__header {
         grid-area: header;
     }
 

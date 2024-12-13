@@ -31,7 +31,7 @@ Route::middleware('auth:sanctum')->group(function () {
         // Роуты.
         Route::prefix('user')-> group(function () {
             Route::post('update', [ProfileController::class,'update']);
-            Route::post('update', [PicController::class,'update']);
+            Route::post('updatePic', [PicController::class,'updatePic']);
         });
     });
 
