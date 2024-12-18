@@ -15,6 +15,11 @@ const props = defineProps({
             <p class="application-card__theme">{{ user.name }}</p>
             <p class="application-card__price">{{ user.surname }}</p>
         </div>
+        <div class="application-card__btn-container">
+            <RouterLink class="application-card__btn" :to="{ name: 'UserProfileUpdate', params: { id: user.id } }">
+                Редактировать
+            </RouterLink>
+        </div>
     </article>
 </template>
 <style lang="scss">
