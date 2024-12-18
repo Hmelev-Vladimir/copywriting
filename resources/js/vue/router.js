@@ -7,6 +7,7 @@ import {
 
 } from 'vue-router';
 import $auth from './global/$auth';
+
 // Импорт компонентов (страниц сайта).
 const Applications = () => import('./components/pages/Applications.vue');
 const ApplicationShow = () => import('./components/pages/ApplicationShow.vue');
@@ -16,6 +17,9 @@ const Main = () => import('./components/pages/Main.vue');
 const Login = () => import('./components/pages/auth/Login.vue');
 const Register = () => import('./components/pages/auth/Register.vue');
 const AdminPanel = () => import('./components/pages/auth/admin/AdminPanel.vue');
+const ApplicationsAdmin = () => import('./components/pages/auth/admin/partials/ApplicationsAdmin.vue');
+const UsersAdmin = () => import('./components/pages/auth/admin/partials/UsersAdmin.vue');
+
 const UserProfile = () => import('./components/pages/auth/user/UserProfile.vue');
 const UserProfileUpdate = () => import('./components/pages/auth/user/UserProfileUpdate.vue');
 
@@ -41,7 +45,19 @@ const routes = [
         path: '/AdminPanel',
         name: 'AdminPanel',
         component: AdminPanel,
-        meta: { role: 'admin' }
+        meta: { role: 'admin' },
+        children: [
+            {
+                path: 'applications-admin',
+                name: 'ApplicationsAdmin',
+                component: ApplicationsAdmin,
+            },
+            {
+                path: 'users-admin',
+                name: 'UsersAdmin',
+                component: UsersAdmin,
+            },
+        ],
     },
     {
         path: '/UserProfile',

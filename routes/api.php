@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PicController;
 
@@ -35,8 +36,12 @@ Route::middleware('auth:sanctum')->group(function () {
         });
     });
 
-    // Только для пользователей с ролью admin (администратор).
     Route::middleware('ability:admin')->group(function () {
         // Роуты.
+        Route::prefix('admin')-> group(function () {
+            Route::get('getUser', [AdminController::class,'getUser']);
+        });
     });
+
+
 });

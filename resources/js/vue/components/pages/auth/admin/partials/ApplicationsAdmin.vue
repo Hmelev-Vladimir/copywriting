@@ -1,6 +1,6 @@
 <script setup>
 import { onBeforeMount, reactive, ref } from 'vue';
-import ApplicationCard from './partials/ApplicationCard.vue';
+import ApplicationCard from './ApplicationCard.vue';
 import axios from 'axios';
 
 
@@ -42,21 +42,20 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <section class="posts">
-        <h1 class="posts__title">Обьявления</h1>
-        <RouterLink class="posts__btn" :to="{ name: 'ApplicationCreate' }">Новое объявление</RouterLink>
-        <div class="posts__container" v-if="!load">
+    <section class="adminApplications">
+        <h1 class="adminApplications__title">Обьявления</h1>
+        <div class="adminApplications__container" v-if="!load">
             <ApplicationCard v-for="application in applications" :application="application"
                 @deleteApplication="deleteApplication">
             </ApplicationCard>
         </div>
-        <div class="posts__container posts__container_load" v-else>
+        <div class="adminApplications__container adminApplications__container_load" v-else>
             <Load></Load>
         </div>
     </section>
 </template>
 <style lang="scss">
-.posts {
+.adminApplications {
     @include outerContainer;
     margin-top: 1rem;
     margin-bottom: 1rem;

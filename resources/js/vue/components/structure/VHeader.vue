@@ -86,6 +86,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
 
     &__logo-link {
         grid-area: logo-link;
+
     }
 
     &__navbars {
@@ -125,6 +126,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         margin-left: 10px;
         grid-area: info;
         font-size: 15pt;
+        text-align: center;
 
     }
 
@@ -137,6 +139,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
 
         filter: brightness(0) saturate(100%) invert(49%) sepia(67%) saturate(783%) hue-rotate(326deg) brightness(99%) contrast(89%);
         border-radius: 15px;
+
 
         &:hover {
             transform: scale(1.1);
@@ -227,6 +230,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__link {
         display: inline-block;
         color: $secondary-color;
+        background-color: $teriary-color;
         border: 3px solid $teriary-color;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
