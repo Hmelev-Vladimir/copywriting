@@ -36,16 +36,24 @@ const errors = reactive({
     password: null,
 });
 
-function copyUser() {
-    user.id = $auth.user.id;
-    user.login = $auth.user.login;
-    user.surname = $auth.user.surname;
-    user.pic = $auth.user.pic;
-    user.name = $auth.user.name;
-    user.phone = $auth.user.phone;
-    user.email = $auth.user.email;
-    user.password = '';
-    user.password_confirmation = '';
+function getUser() {
+    axios.get('/api/getUser', { params: { id: props.id } })
+        .then((response) => {
+            console.log(response);
+            for (const key in response.data.user) {
+                user[key] = response.data.user[key];
+            }
+        })
+        .catch((error) => {
+            console.log(error.response);
+            alert(`Ошибка ${error.response.status}`);
+            if ($auth.user.role === 'admin') {
+                router.push({ name: 'UsersAdmin' });
+
+            } else if ($auth.user.role === 'user') {
+                router.push({ name: 'UserProfile' });
+            }
+        });
 }
 
 function updateProfile() {
@@ -80,7 +88,7 @@ function updateProfile() {
         });
 }
 onMounted(() => {
-    copyUser();
+    getUser();
 });
 </script>
 

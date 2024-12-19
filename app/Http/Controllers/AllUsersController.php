@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Storage;
 class AllUsersController extends Controller
 {
     //
-
+    public function getUser(Request $request){
+        $user = User::findOrFail($request->id);
+        return response()->json([
+            'user' => $user
+        ], 200);
+    }
     public function update (ProfileUpdateRequest $request) {
 
         $user = $request->user();

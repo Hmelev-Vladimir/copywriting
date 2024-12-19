@@ -20,7 +20,7 @@ const emit = defineEmits(['send-form']);
                 </RouterLink>
             </div>
         </div>
-        <div class="userProfile-image" v-if="!load">
+        <div class="userProfile-image">
             <img class="userProfile-image__cover" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
 
             <ProfilePicForm class="post-create__form">
