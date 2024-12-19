@@ -19,6 +19,7 @@ import VFooter from "./structure/VFooter.vue";
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: Gothic A1;
 }
 
 // Первоначальная разметка.
@@ -31,6 +32,7 @@ import VFooter from "./structure/VFooter.vue";
         'main'
         'footer';
     min-height: 100vh;
+    font-family: Gothic A1;
 
     &__header {
         grid-area: header;
@@ -44,5 +46,6 @@ import VFooter from "./structure/VFooter.vue";
     &__footer {
         grid-area: footer;
     }
+
 }
 </style>
