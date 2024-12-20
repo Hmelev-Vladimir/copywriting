@@ -13,8 +13,10 @@ class ProfileController extends Controller
     //
 
     public function update (ProfileUpdateRequest $request) {
-
-        $profile = $request->user();
+        $profile = User::findOrFail($request->id);
+        if ($request->user()->cannot('update', $profile)) {
+            abort(403);
+        }
 
         // Получение публичного диска.
         $disk = Storage::disk('public');

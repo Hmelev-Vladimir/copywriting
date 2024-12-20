@@ -13,6 +13,9 @@ class AllUsersController extends Controller
     //
     public function getUser(Request $request){
         $user = User::findOrFail($request->id);
+        if ($request->user()->cannot('update', $user)) {
+            abort(403);
+        }
         return response()->json([
             'user' => $user
         ], 200);
