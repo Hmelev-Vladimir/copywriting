@@ -37,7 +37,7 @@ const errors = reactive({
 });
 
 function getUser() {
-    axios.get('/api/getUser', { params: { id: props.id } })
+    axios.get('/api/users/getUser', { params: { id: props.id } })
         .then((response) => {
             console.log(response);
             for (const key in response.data.user) {
@@ -68,7 +68,7 @@ function updateProfile() {
     formData.append('password', user.password);
     formData.append('password_confirmation', user.password_confirmation);
 
-    axios.post('api/user/update', formData)
+    axios.post('api/users/update', formData)
         .then((response) => {
             console.log(response);
             router.push({ name: 'UserProfile' });

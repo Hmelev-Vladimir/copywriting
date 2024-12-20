@@ -26,13 +26,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('passwordReset', [AuthController::class, 'passwordReset']);
-    Route::get('getUser', [AllUsersController::class, 'getUser']);
+
+    Route::prefix('users')-> group(function () {
+        Route::get('getUser', [AllUsersController::class, 'getUser']);
+        Route::post('update', [ProfileController::class,'update']);
+    });
 
     // Только для пользователей с ролью user (пользователь).
     Route::middleware('ability:user')->group(function () {
         // Роуты.
         Route::prefix('user')-> group(function () {
-            Route::post('update', [ProfileController::class,'update']);
             Route::post('updatePic', [PicController::class,'updatePic']);
         });
     });

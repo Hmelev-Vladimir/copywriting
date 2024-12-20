@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $path =  $profile->pic;
 
         // Пользователь загрузил изображение.
-        if ($request->pic !== null) {
+        if (is_file($request->pic)) {
             if (
                 // Если изображение не является заглушкой.
                 $profile->pic !== 'profile.jpg' &&
