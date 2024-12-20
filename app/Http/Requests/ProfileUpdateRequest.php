@@ -27,8 +27,8 @@ class ProfileUpdateRequest extends FormRequest
                 'surname' => ['required', 'string', 'between:1,255'],
                 'name' => ['required', 'string', 'between:1,255'],
                 'phone' => ['required', 'regex:/^\\+?[1-9][0-9]{7,14}$/i'],
-                'email' => ['required', 'email', 'between:1,255', Rule::unique('users')->ignore(auth('sanctum')->user()->id)],
-                'login' => ['required', 'string', 'between:1,255', Rule::unique('users')->ignore(auth('sanctum')->user()->id)],
+                'email' => ['required', 'email', 'between:1,255', Rule::unique('users')->ignore($this->id)],
+                'login' => ['required', 'string', 'between:1,255', Rule::unique('users')->ignore($this->id)],
                 'password' => ['required', 'string', 'between:6,255', 'confirmed']
 
         ];

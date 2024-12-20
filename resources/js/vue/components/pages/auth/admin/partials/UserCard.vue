@@ -30,6 +30,7 @@ const props = defineProps({
     // .application-card__item
 
     &__item {
+        height: 100px;
         display: grid;
         grid-template-columns:
             100px minmax(40px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr);
@@ -72,6 +73,21 @@ const props = defineProps({
     &__price {
         display: grid;
         align-self: center;
+    }
+
+    &__btn {
+        @include btn;
+        align-content: center;
+    }
+
+    &__btn-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-left: 10px;
     }
 }
 </style>
