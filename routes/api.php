@@ -30,6 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('users')-> group(function () {
         Route::get('getUser', [AllUsersController::class, 'getUser']);
         Route::post('update', [ProfileController::class,'update']);
+        Route::delete('delete', [AllUsersController::class,'delete']);
     });
 
     // Только для пользователей с ролью user (пользователь).

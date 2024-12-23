@@ -22,13 +22,27 @@ function getUser() {
 onBeforeMount(() => {
     getUser();
 });
+function deleteUser(user) {
+    if (confirm('Хотите удалить данного пользователя?')) {
+        axios.delete('/api/users/delete', { params: { id: user.id } })
+            .then((response) => {
+                console.log(response);
+                const index = users.indexOf(user);
+                users.splice(index, 1);
+            }).catch((error) => {
+                console.log(error.response);
+                alert('Ошибка! Пользователя с подобным id нет');
+            });
+
+    }
+}
 </script>
 
 <template>
     <div class="users-admin">
         <h1 class="users-admin__userName">Профили пользователей</h1>
         <div class="users-admin__adminUserContainer" v-if="!load">
-            <UserCard v-for="user in users" :user="user">
+            <UserCard v-for="user in users" :user="user" @deleteUser="deleteUser">
             </UserCard>
         </div>
         <div class="posts__container posts__container_load" v-else>

@@ -9,10 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -36,15 +37,15 @@ class User extends Authenticatable
 
     protected function fullName(): Attribute
     {
-    return Attribute::make(
-        get: function () {
-            $fullName = $this->surname . ' ' . $this->name;
-            if ($this->patronymic !== null) {
-                $fullName .= ' ' . $this->patronymic;
-            }
-            return $fullName;
-        },
-    );
+        return Attribute::make(
+            get: function () {
+                $fullName = $this->surname . ' ' . $this->name;
+                if ($this->patronymic !== null) {
+                    $fullName .= ' ' . $this->patronymic;
+                }
+                return $fullName;
+            },
+        );
     }
     /**
      * The attributes that should be hidden for serialization.

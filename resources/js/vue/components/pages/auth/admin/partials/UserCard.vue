@@ -6,6 +6,7 @@ const props = defineProps({
         required: true
     }
 });
+const emit = defineEmits(['deleteUser']);
 </script>
 <template>
     <article class="application-card">
@@ -19,6 +20,8 @@ const props = defineProps({
             <RouterLink class="application-card__btn" :to="{ name: 'UserProfileUpdate', params: { id: user.id } }">
                 Редактировать
             </RouterLink>
+            <button class="application-card__btn" type="button" @click="emit('deleteUser', user)"
+                v-if="user.id !== $auth.user.id">Удалить</button>
         </div>
     </article>
 </template>
