@@ -1,7 +1,25 @@
 <script setup>
 import $auth from '#/$auth';
 import ProfilePicForm from './partials/ProfilePicForm.vue';
-const emit = defineEmits(['send-form']);
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+function deleteUser() {
+    if (confirm('Хотите удалить данного пользователя?')) {
+        axios.delete('/api/users/delete', { params: { id: $auth.user.id } })
+            .then((response) => {
+                console.log(response);
+                $auth.token.removeLocal();
+                $auth.user.removeLocal();
+                router.push({ name: 'Main' });
+            }).catch((error) => {
+                console.log(error.response);
+                alert('Ошибка! Пользователя с подобным id нет');
+            });
+
+    }
+};
 </script>
 <template>
     <section class="userProfile">
@@ -18,6 +36,7 @@ const emit = defineEmits(['send-form']);
                     :to="{ name: 'UserProfileUpdate', params: { id: $auth.user.id } }">
                     Редактировать
                 </RouterLink>
+                <button class="userProfile-info__btn" type="button" @click="deleteUser">Удалить</button>
             </div>
         </div>
         <div class="userProfile-image">

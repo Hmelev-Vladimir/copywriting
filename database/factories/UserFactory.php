@@ -40,10 +40,21 @@ class UserFactory extends Factory
     public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
+            'login' => 'admin',
             'email' => 'admin@admin.net',
             'email_verified_at' => now(),
             'password' => Hash::make('admin12345'),
             'role' => 'admin',
+        ]);
+    }
+
+    /**
+     * Пользователь
+     */
+    public function user(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'login' => 'user',
         ]);
     }
 

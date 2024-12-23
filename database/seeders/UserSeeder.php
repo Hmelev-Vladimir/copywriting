@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     {
         //
         User::factory(1)->admin()->create();
+        User::factory(1)->user()->hasApplications(35)->create();
         User::factory(3)->hasApplications(35)->create();
     }
 }

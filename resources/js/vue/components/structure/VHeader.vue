@@ -1,6 +1,5 @@
 <script setup>
 import Logout from '../pages/auth/partials/Logout.vue';
-
 </script>
 <template>
     <header class="header">
