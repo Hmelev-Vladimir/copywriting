@@ -24,7 +24,12 @@ return new class extends Migration
                 $table->string('status')->default('Новая');
                 $table->text('reason')->nullable();
                 $table->dateTime('publicationDate');
-                $table->unsignedBigInteger('user_id');
+
+                $table->foreignId('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
 
                 $table->timestamps();
             }

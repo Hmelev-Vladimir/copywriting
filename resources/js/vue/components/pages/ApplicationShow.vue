@@ -23,6 +23,7 @@ const application = reactive({
     publicationDate: '',
     created_at: '',
     updated_at: '',
+    user: { surname: '' },
 });
 
 function getApplication() {
@@ -51,10 +52,11 @@ onBeforeMount(() => {
         <img class="applicationShow__cover" :src="`/storage/${application.cover}`" :alt="application.title">
         <div class="applicationShow__item">
             <h1 class="applicationShow__title"> {{ application.title }} </h1>
-            <p class="applicationShow__theme">{{ application.theme }}</p>
+            <p class="applicationShow__theme">Тема: {{ application.theme }}</p>
             <p class="applicationShow__price">{{ application.price }} РУБ</p>
+            <p class="applicationShow__price">Автор: {{ application.user.surname }}</p>
             <p class="applicationShow__description">{{ application.description }}</p>
-            <p class="applicationShow__status"> {{ application.status }} </p>
+            <p class="applicationShow__status"> Статус объявления: {{ application.status }} </p>
             <div class="applicationShow__dateCont">
                 <div class="applicationShow__publicationDate">Обупликовано в: {{ new
                     Date(application.publicationDate).toLocaleString() }}
@@ -101,7 +103,7 @@ onBeforeMount(() => {
 
     // .applicationShow__title
     &__description {
-        align-self: center;
+        text-align: center;
         font-size: 1.5rem;
         box-shadow: 0px 3px 3px 0px $primary-color;
         border-radius: 15px;
@@ -167,13 +169,14 @@ onBeforeMount(() => {
 
     // .applicationShow__created-at
     &__publicationDate {
-        border-radius: 15px;
+        padding-top: 30px;
+
         box-shadow: 0px 3px 3px 0px $primary-color;
         border-radius: 15px;
     }
 
     &__created-at {
-        padding-top: 20px;
+        padding-top: 30px;
         box-shadow: 0px 3px 3px 0px $primary-color;
         border-radius: 15px;
     }
@@ -181,7 +184,7 @@ onBeforeMount(() => {
     // .applicationShow__updated-at
 
     &__updated-at {
-        padding-top: 20px;
+        padding-top: 30px;
         box-shadow: 0px 3px 3px 0px $primary-color;
         border-radius: 15px;
     }

@@ -2,6 +2,7 @@
 import { reactive, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import ApplicationForm from './partials/ApplicationForm.vue';
+import $auth from '#/$auth';
 
 const props = defineProps({
     id: {
@@ -43,7 +44,20 @@ function getApplication() {
         .catch((error) => {
             console.log(error.response);
             alert(`Ошибка ${error.response.status}`);
-            router.push({ name: 'Applications' });
+            switch ($auth.user.role) {
+                case 'user':
+                    router.push({
+                        name: 'UserProfile'
+                    });
+                    break;
+                case 'admin':
+                    router.push({
+                        name: 'AdminPanel'
+                    });
+                    break;
+                default:
+                    break;
+            }
         });
 }
 function updateApplication() {
@@ -59,7 +73,20 @@ function updateApplication() {
     axios.post('api/applications/update', formData)
         .then((response) => {
             console.log(response);
-            router.push({ name: 'Applications' });
+            switch ($auth.user.role) {
+                case 'user':
+                    router.push({
+                        name: 'UserProfile'
+                    });
+                    break;
+                case 'admin':
+                    router.push({
+                        name: 'AdminPanel'
+                    });
+                    break;
+                default:
+                    break;
+            }
         })
         .catch((error) => {
             for (const key in errors) {

@@ -14,11 +14,14 @@ const emit = defineEmits(['deleteApplication']);
         <div class="adminApplication-card__item">
             <img class="adminApplication-card__cover" :src="`/storage/${application.cover}`" :alt="application.title">
             <h3 class="adminApplication-card__title"> {{ application.title }} </h3>
-            <p class="adminApplication-card__theme">{{ application.theme }}</p>
+            <p class="adminApplication-card__theme">Тема: {{ application.theme }}</p>
             <p class="adminApplication-card__price">{{ application.price }} РУБ</p>
             <p class="adminApplication-card__status"> {{ application.status }} </p>
             <p class="adminApplication-card__publicationDate">
                 {{ new Date(application.publicationDate).toLocaleString() }}
+            </p>
+            <p class="adminApplication-card__author">
+                Автор: {{ application.user.surname }}
             </p>
             <div class="adminApplication-card__btn-container">
                 <RouterLink class="adminApplication-card__btn"
@@ -43,10 +46,10 @@ const emit = defineEmits(['deleteApplication']);
 
     &__item {
         display: grid;
-        grid-template-rows:
-            auto minmax(40px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr);
+        grid-auto-rows: max-content;
+        grid-auto-flow: row;
         grid-template-columns: 1fr;
-        grid-auto-rows: auto;
+        gap: 0.5rem;
 
         align-content: start;
         justify-content: center;
@@ -66,7 +69,9 @@ const emit = defineEmits(['deleteApplication']);
     // .application-card__title
 
     &__title {
+        display: grid;
         justify-self: center;
+        padding-top: 20px;
     }
 
     // .application-card__theme
@@ -97,6 +102,14 @@ const emit = defineEmits(['deleteApplication']);
     }
 
     &__publicationDate {
+        justify-self: center;
+        align-self: end;
+        padding: 5px;
+        color: grey;
+    }
+
+
+    &__author {
         justify-self: center;
         align-self: end;
         padding: 5px;

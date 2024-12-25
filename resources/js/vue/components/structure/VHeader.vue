@@ -94,7 +94,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
         grid-auto-flow: row;
         grid-template-areas: 'nav-upper' 'nav-lower';
         grid-area: navbars;
-        gap: 1rem;
+
+        gap: 0.5rem;
     }
 
 
@@ -149,7 +150,6 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__nav-lower {
         grid-area: nav-lower;
         align-self: end;
-
     }
 
     &__nav-upper {
@@ -165,10 +165,11 @@ import Logout from '../pages/auth/partials/Logout.vue';
     }
 
     &__list-up {
+        display: grid;
+        padding-bottom: 10px;
         grid-area: list;
         list-style-type: none;
 
-        padding-bottom: 20px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -207,6 +208,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
 
     // .header__link
     &__link-up {
+        display: inline-block;
         font-size: 12pt;
         color: $teriary-color;
         text-decoration: none;
@@ -217,8 +219,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         background: transparent;
         cursor: pointer;
         border: 2px solid $teriary-color;
-        padding: 15px;
-        display: inline-block;
+        padding: 10px 15px;
 
         &:hover {
             background-color: $teriary-color;
@@ -237,7 +238,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         transition: all 0.2s ease-in-out;
         cursor: pointer;
         background-color: $teriary-color;
-        padding: 15px;
+        padding: 10px 15px;
         font-size: 14pt;
 
         &:hover {

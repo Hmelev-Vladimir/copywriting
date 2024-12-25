@@ -19,6 +19,9 @@ class Application extends Model
         'publicationDate',
         'cover',
     ];
+    protected $with = [
+       'user'
+    ];
 
     public function user(): BelongsTo
     {

@@ -36,9 +36,8 @@ class ApplicationController extends Controller
 
         // Загрузка изображения с записью названия и расширения в переменную $path.
         $path = $disk->put('', $request->cover);
-        $user = User::find(1);
 
-        $application = $user-> applications()->create(array_merge(
+        $application = $request->user()-> applications()->create(array_merge(
             $request->except(['cover']),
             ['cover' => $path
             ]

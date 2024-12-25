@@ -45,6 +45,7 @@ const routes = [
         path: '/AdminPanel',
         name: 'AdminPanel',
         component: AdminPanel,
+        redirect: { name: 'ApplicationsAdmin' },
         meta: { role: 'admin' },
         children: [
             {

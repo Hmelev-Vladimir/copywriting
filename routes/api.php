@@ -12,16 +12,12 @@ use App\Http\Controllers\PicController;
 Route::prefix('applications')-> group(function () {
     Route::get('getList', [ApplicationController::class,'getList']);
     Route::get('getApplication', [ApplicationController::class,'getApplication']);
-    Route::post('create', [ApplicationController::class,'create']);
-    Route::delete('delete', [ApplicationController::class,'delete']);
-    Route::post('update', [ApplicationController::class,'update']);
 });
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
 
 // Только для авторизованных пользователей.
-
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
@@ -33,7 +29,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('delete', [AllUsersController::class,'delete']);
     });
 
-    // Только для пользователей с ролью user (пользователь).
+    Route::prefix('applications')-> group(function () {
+        Route::post('create', [ApplicationController::class,'create']);
+        Route::delete('delete', [ApplicationController::class,'delete']);
+        Route::post('update', [ApplicationController::class,'update']);
+    });
+
     Route::middleware('ability:user')->group(function () {
         // Роуты.
         Route::prefix('user')-> group(function () {
@@ -47,6 +48,4 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('getUser', [AdminController::class,'getUser']);
         });
     });
-
-
 });

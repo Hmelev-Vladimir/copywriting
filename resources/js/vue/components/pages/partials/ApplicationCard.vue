@@ -66,6 +66,8 @@ const emit = defineEmits(['deleteApplication']);
     // .application-card__title
 
     &__title {
+        display: grid;
+        padding-top: 20px;
         justify-self: center;
     }
 

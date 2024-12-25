@@ -45,6 +45,9 @@ function deleteUser() {
             <ProfilePicForm class="post-create__form">
             </ProfilePicForm>
         </div>
+        <div class="userProfile-applications">
+            <RouterLink class="posts__btn" :to="{ name: 'ApplicationCreate' }">Новое объявление</RouterLink>
+        </div>
     </section>
 </template>
 <style lang="scss">
@@ -169,7 +172,6 @@ function deleteUser() {
 
     // .userProfile-image__input
 
-    &__input {}
 
     // .userProfile-image__error
 
@@ -193,6 +195,18 @@ function deleteUser() {
         justify-self: center;
         width: 200px;
         border-radius: 15px;
+    }
+}
+
+.posts {
+
+
+    &__btn {
+        grid-area: submit;
+        display: grid;
+        justify-self: center;
+        margin-top: 20px;
+        @include btn;
     }
 }
 

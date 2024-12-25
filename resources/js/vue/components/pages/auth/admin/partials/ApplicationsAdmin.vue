@@ -69,6 +69,7 @@ onBeforeMount(() => {
     // .posts__title
 
     &__title {
+
         grid-area: title;
         @include title
     }
