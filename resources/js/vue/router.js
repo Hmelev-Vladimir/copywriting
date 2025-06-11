@@ -93,13 +93,15 @@ const routes = [
         path: '/applications/update/:id',
         name: 'ApplicationUpdate',
         component: ApplicationUpdate,
-        props: true
+        props: true,
+        meta: { role: 'user' }
     },
     {
         path: '/applications/create',
         name: 'ApplicationCreate',
         component: ApplicationCreate,
-        props: true
+        props: true,
+        meta: { role: 'user' }
     },
 ];
 

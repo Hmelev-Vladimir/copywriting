@@ -29,7 +29,7 @@ class ApplicationController extends Controller
 
     }
 
-    public function create (ApplicationCreateRequest $request) {
+    public function create(ApplicationCreateRequest $request) {
 
        // Получение публичного диска.
         $disk = Storage::disk('public');
@@ -39,7 +39,8 @@ class ApplicationController extends Controller
 
         $application = $request->user()-> applications()->create(array_merge(
             $request->except(['cover']),
-            ['cover' => $path
+            [
+                'cover' => $path
             ]
         ));
 
@@ -48,7 +49,7 @@ class ApplicationController extends Controller
         ], 200);
     }
 
-    public function update (ApplicationUpdateRequest $request) {
+    public function update(ApplicationUpdateRequest $request) {
         // $application =  Application::findOrFail($request->id);
 
         // $disk = Storage::disk('public');
