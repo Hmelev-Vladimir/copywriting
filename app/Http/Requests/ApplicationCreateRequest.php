@@ -14,15 +14,18 @@ class ApplicationCreateRequest extends FormRequest
         return true;
     }
 
+    /**
+     * Подготавливает форму для валидации.
+     */
     protected function prepareForValidation(): void
     {
         if($this->cover === 'null'){
             $this->merge([
               'cover' => null
             ]);
-
         }
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -31,7 +34,6 @@ class ApplicationCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
             'cover' => ['required','image','max:10000'],
             'title' => ['required', 'string','max:255'],
             'theme' => ['required', 'string','max:255'],
@@ -41,6 +43,9 @@ class ApplicationCreateRequest extends FormRequest
         ];
     }
 
+    /**
+     * Пользовательские сообщения об ошибках.
+     */
     public function messages(): array
     {
         return [

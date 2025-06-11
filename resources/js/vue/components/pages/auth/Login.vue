@@ -80,16 +80,19 @@ function login() {
 
 <style lang="scss">
 .login {
+    @include card;
+
     display: grid;
     grid-template-rows: repeat(2, max-content);
     grid-template-areas: 'title' 'form';
+    align-self: center;
+    justify-self: center;
+    min-width: 400px;
 
-    // .login__title
     &__title {
         @include title;
     }
 
-    // .login__form
     &__form {
         grid-area: form;
     }

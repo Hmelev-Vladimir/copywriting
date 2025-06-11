@@ -19,6 +19,18 @@
     color: vars.$teriary-color;
 }
 
+@mixin card {
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid vars.$secondary-color;
+    box-shadow: 4px 10px 8px 0px  vars.$primary-color;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 6px 12px 8px 0px  vars.$primary-color;
+    }
+}
+
 @mixin btn {
     display: inline-block;
     cursor: pointer;
@@ -34,7 +46,6 @@
     border-image-slice: 1;
     text-decoration: none;
     font-family: inherit;
-
 
     &:hover {
         color: white;
