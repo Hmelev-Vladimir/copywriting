@@ -14,7 +14,7 @@ export default defineConfig({
         vue({
             template: {
                 transformAssetUrls: {
-                    base: "http://copywriting",
+                    base: "https://copywriting",
                     includeAbsolute: false
                 },
             },

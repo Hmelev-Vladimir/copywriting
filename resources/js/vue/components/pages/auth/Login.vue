@@ -83,47 +83,15 @@ function login() {
     display: grid;
     grid-template-rows: repeat(2, max-content);
     grid-template-areas: 'title' 'form';
-    // .login__title
 
+    // .login__title
     &__title {
-        display: grid;
-        grid-area: title;
-        text-align: center;
-        padding: 10px;
+        @include title;
     }
 
     // .login__form
-
     &__form {
         grid-area: form;
     }
-}
-
-.form {
-    display: grid;
-
-    // .form__row
-
-    &__row {
-        padding: 10px;
-        width: 50%;
-        justify-self: center;
-    }
-
-    // .form__label
-
-    &__label {}
-
-    // .form__input
-
-    &__input {}
-
-    // .form__error
-
-    &__error {}
-
-    // .form__btn
-
-    &__btn {}
 }
 </style>

@@ -13,6 +13,10 @@
 @mixin title {
     font-size: 2rem;
     padding-bottom: 0.5rem;
+    display: grid;
+    place-items: center;
+    margin-top: 20px;
+    color: vars.$teriary-color;
 }
 
 @mixin btn {

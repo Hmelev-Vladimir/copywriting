@@ -123,9 +123,12 @@
             display: grid;
             grid-template-rows: auto;
             grid-auto-flow: row;
-            justify-items: center;
+            place-items: center;
+            // justify-items: center;
 
-            &__items {}
+            &__items {
+                li{list-style: none;}
+            }
 
             &__item {
                 margin-top: 60px;
@@ -133,6 +136,7 @@
                 box-shadow: 0px 3px 3px 0px rgba(34, 60, 80, 0.2);
                 color: #4d565e;
                 border-radius: 15px;
+
             }
         }
     }
