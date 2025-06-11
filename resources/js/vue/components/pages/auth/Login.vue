@@ -46,9 +46,9 @@ function login() {
             }
         })
         // Неудачная попытка авторизации.
-        .catch((error) => {
+        .catch((errorLocal) => {
             // Обрабатываем ошибку.
-            error.value = error;
+            error.value = errorLocal;
         });
 }
 </script>

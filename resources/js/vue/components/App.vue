@@ -11,6 +11,7 @@ import VFooter from "./structure/VFooter.vue";
     </main>
     <VFooter class="app__footer"></VFooter>
 </template>
+
 <style lang="scss">
 // Универсальный селектор с обнулением базовых стилей.
 *,
