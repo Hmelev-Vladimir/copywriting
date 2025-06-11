@@ -37,5 +37,8 @@ export default defineConfig({
                 additionalData: `@import "resources/scss/index.scss";`
             }
         }
-    }
+    },
+    server:{
+        cors: true,
+    },
 });
