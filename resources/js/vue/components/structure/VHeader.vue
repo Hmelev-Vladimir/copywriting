@@ -210,7 +210,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__link-up {
         display: inline-block;
         font-size: 12pt;
-        color: $teriary-color;
+        color: $tertiary-color;
         text-decoration: none;
         margin-left: 5px;
         border-bottom-left-radius: 15px;
@@ -218,11 +218,11 @@ import Logout from '../pages/auth/partials/Logout.vue';
         transition: all 0.2s ease-in-out;
         background: transparent;
         cursor: pointer;
-        border: 2px solid $teriary-color;
+        border: 2px solid $tertiary-color;
         padding: 10px 15px;
 
         &:hover {
-            background-color: $teriary-color;
+            background-color: $tertiary-color;
             color: $secondary-color;
         }
     }
@@ -230,20 +230,20 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__link {
         display: inline-block;
         color: $secondary-color;
-        background-color: $teriary-color;
-        border: 3px solid $teriary-color;
+        background-color: $tertiary-color;
+        border: 3px solid $tertiary-color;
         border-top-left-radius: 15px;
         border-top-right-radius: 15px;
         text-decoration: none;
         transition: all 0.2s ease-in-out;
         cursor: pointer;
-        background-color: $teriary-color;
+        background-color: $tertiary-color;
         padding: 10px 15px;
         font-size: 14pt;
 
         &:hover {
             background-color: $secondary-color;
-            color: $teriary-color;
+            color: $tertiary-color;
         }
     }
 }

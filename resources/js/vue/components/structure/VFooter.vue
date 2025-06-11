@@ -1,6 +1,6 @@
 <template>
     <footer class="footer">
-        <p class="footer__copyright">&copy; Все права защищены, 2024.</p>
+        <p class="footer__copyright">&copy; Все права защищены, 2025.</p>
     </footer>
 </template>
 
@@ -12,8 +12,9 @@
     display: grid;
     justify-items: center;
     align-items: center;
-    color: $teriary-color;
+    color: darken($tertiary-color, 10);
     background-color: $secondary-color;
+    border-top: 1px solid darken($secondary-color, 10);
 
     &__copyright {
         font-size: 1.2rem;

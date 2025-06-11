@@ -16,7 +16,7 @@
     display: grid;
     place-items: center;
     margin-top: 20px;
-    color: vars.$teriary-color;
+    color: vars.$tertiary-color;
 }
 
 @mixin card {
@@ -42,7 +42,7 @@
     border: 3px solid vars.$secondary-color;
     border-image: linear-gradient(45deg,
             vars.$secondary-color,
-            vars.$teriary-color );
+            vars.$tertiary-color );
     border-image-slice: 1;
     text-decoration: none;
     font-family: inherit;

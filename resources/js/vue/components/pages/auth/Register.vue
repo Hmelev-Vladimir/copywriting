@@ -153,6 +153,8 @@ function register() {
     align-self: center;
     justify-self: center;
     min-width: 400px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
     &__title {
         @include title;

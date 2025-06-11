@@ -54,7 +54,7 @@
     /* When you mouse over the navigation links, change their color */
     &__sidenav a:hover {
         color: $secondary-color;
-        background-color: $teriary-color;
+        background-color: $tertiary-color;
     }
 
 
