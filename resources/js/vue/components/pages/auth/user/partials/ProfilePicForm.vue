@@ -1,17 +1,25 @@
 <script setup>
 import { reactive, ref } from 'vue';
-import axios from 'axios';
 import $auth from '#/$auth';
+
+// Индикатор загрузки.
 const load = ref(false);
 
-const picForm = ref(false);
+// Индикатор, показана ли форма загрузки изображения.
+const picFormShown = ref(false);
 
+// Изображение.
 const pic = ref(null);
 
+// Ошибки.
 const errors = reactive({
     pic: null,
 });
 
+/**
+ * Загружает фото.
+ * @param event {Event} Событие.
+ */
 function uploadImg(event) {
     load.value = true;
 
@@ -24,13 +32,12 @@ function uploadImg(event) {
     const formData = new FormData();
     formData.append('pic', pic.value);
 
-
     axios.post('api/user/updatePic', formData)
         // Удачный отклик.
         .then((response) => {
             console.log(response);
             $auth.user.pic = response.data.pic;
-            picForm.value = false;
+            picFormShown.value = false;
         })
         // Неудачный отклик.
         .catch((error) => {
@@ -56,21 +63,58 @@ function uploadImg(event) {
 </script>
 
 <template>
-    <div>
-        <button @click="picForm = !picForm" class="userProfile-image__switch-form-btn">Изменить фото
-            профиля</button>
-        <form class="userProfile-image__form" v-show="picForm">
-            <!-- Другие поля формы. -->
-            <div class="userProfile-image__row">
-                <input class="userProfile-image__input" :class="{ form__input_error: errors.pic !== null }" name="pic"
-                    id="pic" type="file" accept="image/*" @change="uploadImg">
-                <div class="userProfile-image__error" v-if="errors.pic !== null">
+    <div class="profile-pic-form">
+        <button @click="picFormShown = !picFormShown"
+            class="profile-pic-form__switch-form-btn">
+            Изменить фото профиля
+        </button>
+        <form class="form" v-show="picFormShown">
+            <div class="form__row">
+                <input :class="{ form__input_error: errors.pic !== null }"
+                    name="pic"
+                    id="pic"
+                    type="file"
+                    accept="image/*"
+                    @change="uploadImg">
+                <div class="form__error" v-if="errors.pic !== null">
                     {{ errors.pic }}
                 </div>
             </div>
-            <div class="userProfile-image__load" v-if="load">
+            <div v-if="load">
                 <Load></Load>
             </div>
         </form>
     </div>
 </template>
+
+<style lang="scss">
+.profile-pic-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__switch-form-btn {
+        @include btn;
+    }
+
+    input[type="file"]::file-selector-button {
+        border-radius: 4px;
+        padding: 0 16px;
+        height: 40px;
+        cursor: pointer;
+        background-color: white;
+        border: 1px solid rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
+        margin-right: 16px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    input[type="file"]::file-selector-button:hover {
+        background-color: #f3f4f6;
+    }
+
+    input[type="file"]::file-selector-button:active {
+        background-color: #e5e7eb;
+    }
+}
+</style>
