@@ -1,48 +1,53 @@
 @use 'vars';
 
+// Внешний контейнер.
 @mixin outerContainer {
     margin-left: max(50px, 5%);
     margin-right: max(50px, 5%);
 }
 
+// Внутренний контейнер.
 @mixin innerContainer {
     padding-left: max(50px, 5%);
     padding-right: max(50px, 5%);
 }
 
+// Заголовок.
 @mixin title {
     font-size: 2rem;
     padding-bottom: 0.5rem;
     display: grid;
     place-items: center;
     margin-top: 20px;
-    color: vars.$tertiary-color;
+    color: vars.$accent;
 }
 
+// Карточка.
 @mixin card {
     padding: 30px;
     border-radius: 10px;
-    border: 1px solid vars.$secondary-color;
-    box-shadow: 4px 10px 8px 0px  vars.$primary-color;
+    border: 1px solid vars.$secondary;
+    box-shadow: 4px 10px 8px 0px  vars.$primary;
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        box-shadow: 6px 12px 8px 0px  vars.$primary-color;
+        box-shadow: 6px 12px 8px 0px  vars.$primary;
     }
 }
 
+// Кнопка.
 @mixin btn {
     display: inline-block;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     padding: 0.5rem 1rem;
     background-color: transparent;
-    color: vars.$primary-color;
+    color: vars.$primary;
     font-size: 1rem;
-    border: 3px solid vars.$secondary-color;
+    border: 3px solid vars.$secondary;
     border-image: linear-gradient(45deg,
-            vars.$secondary-color,
-            vars.$tertiary-color );
+            vars.$secondary,
+            vars.$accent );
     border-image-slice: 1;
     text-decoration: none;
     font-family: inherit;
@@ -51,12 +56,13 @@
         color: white;
         background:
             linear-gradient(45deg,
-                vars.$primary-color,
-                vars.$secondary-color );
+                vars.$primary,
+                vars.$secondary );
         ;
     }
 }
 
+// Экран мобильного устройства.
 @mixin mobile {
     @media screen and (max-width: 800px) {
         @content;

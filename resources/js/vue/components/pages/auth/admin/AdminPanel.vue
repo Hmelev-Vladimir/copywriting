@@ -33,7 +33,7 @@
         flex-direction: column;
         padding: 1rem;
 
-        background-color: $primary-color;
+        background-color: $primary;
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
     }
@@ -47,14 +47,14 @@
         padding: 8px 8px 8px 8px;
         text-decoration: none;
         font-size: 25px;
-        color: $secondary-color;
+        color: $secondary;
         display: block;
     }
 
     /* When you mouse over the navigation links, change their color */
     &__sidenav a:hover {
-        color: $secondary-color;
-        background-color: $tertiary-color;
+        color: $secondary;
+        background-color: $accent;
     }
 
 

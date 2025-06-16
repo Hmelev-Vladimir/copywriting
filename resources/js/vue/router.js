@@ -4,7 +4,6 @@ import {
     createRouter,
     createWebHistory,
     createWebHashHistory,
-
 } from 'vue-router';
 import $auth from './global/$auth';
 
@@ -23,23 +22,24 @@ const UsersAdmin = () => import('./components/pages/auth/admin/partials/UsersAdm
 const UserProfile = () => import('./components/pages/auth/user/UserProfile.vue');
 const UserProfileUpdate = () => import('./components/pages/auth/user/UserProfileUpdate.vue');
 
-
-// Добавить роут в массив роутов.
-
-// Добавить роут в массив роутов.
-
 // Роуты (страницы сайта).
 const routes = [
     {
         path: '/',
         name: 'Main',
-        component: Main
+        component: Main,
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login,
+        meta: { role: 'guest', },
     },
     {
         path: '/register',
         name: 'Register',
         component: Register,
-        meta: { role: 'guest' }
+        meta: { role: 'guest', },
     },
     {
         path: '/AdminPanel',
@@ -64,44 +64,38 @@ const routes = [
         path: '/UserProfile',
         name: 'UserProfile',
         component: UserProfile,
-        meta: { role: 'user' }
+        meta: { role: 'user', },
     },
     {
         path: '/user/update/:id',
         name: 'UserProfileUpdate',
         component: UserProfileUpdate,
-        props: true
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login,
-        meta: { role: 'guest' }
+        props: true,
     },
     {
         path: '/applications',
         name: 'Applications',
-        component: Applications
+        component: Applications,
     },
     {
         path: '/applications/:id',
         name: 'ApplicationShow',
         component: ApplicationShow,
-        props: true
+        props: true,
     },
     {
         path: '/applications/update/:id',
         name: 'ApplicationUpdate',
         component: ApplicationUpdate,
         props: true,
-        meta: { role: 'user' }
+        meta: { role: 'user', },
     },
     {
         path: '/applications/create',
         name: 'ApplicationCreate',
         component: ApplicationCreate,
         props: true,
-        meta: { role: 'user' }
+        meta: { role: 'user', },
     },
 ];
 
@@ -110,6 +104,7 @@ const router = createRouter({
     routes: routes,
     history: createWebHistory()
 });
+
 router.beforeResolve(function (to, from, next) {
     // Проверка, имеет ли роут свойство middleware в объекте meta.
     if (to.meta.role) {

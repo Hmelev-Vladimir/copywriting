@@ -34,7 +34,7 @@
     margin-top: 1rem;
     margin-bottom: 1rem;
     gap: 0.6rem;
-    color: $secondary-color;
+    color: $secondary;
     // .applicationShow__cover
 
     &__cover {
@@ -59,7 +59,7 @@
     &__description {
         align-self: center;
         font-size: 1.5rem;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -68,7 +68,7 @@
 
     &__title {
         text-align: center;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         padding-top: 50px;
     }
@@ -82,7 +82,7 @@
         grid-auto-flow: column;
         text-align: center;
         gap: 2rem;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         font-size: 15pt;
     }
@@ -92,7 +92,7 @@
     &__price {
         text-align: center;
         padding-top: 50px;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         font-size: 1.5rem;
 
@@ -104,7 +104,7 @@
         text-align: center;
         padding-top: 50px;
         font-size: 1.5rem;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
     }
 
@@ -124,13 +124,13 @@
     // .applicationShow__created-at
     &__publicationDate {
         border-radius: 15px;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
     }
 
     &__created-at {
         padding-top: 20px;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
     }
 
@@ -138,7 +138,7 @@
 
     &__updated-at {
         padding-top: 20px;
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
     }
 }

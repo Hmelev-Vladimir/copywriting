@@ -1,5 +1,5 @@
 @use 'vars';
-@use 'mixin';
+@use 'mixins';
 
 .form {
     display: grid;
@@ -12,7 +12,7 @@
         grid-auto-rows: max-content;
         grid-auto-flow: row;
         gap: 0.5rem;
-        padding: 10px;
+        padding: 0.5rem;
     }
 
     &__label {
@@ -20,36 +20,36 @@
         text-align: center;
 
         &_error {
-            color: vars.$error-color;
+            color: vars.$error;
         }
     }
 
     &__input {
         display: inline-block;
         background-color: transparent;
-        border-bottom: 2px solid vars.$secondary-color;
+        border-bottom: 2px solid vars.$secondary;
         border-radius: 5px;
         padding: 0.75rem;
         transition: all 0.2s ease-in-out;
-        color: vars.$primary-color;
+        color: vars.$primary;
 
         &:hover,
         &:focus {
-            color: vars.$secondary-color;
-            border-color: vars.$secondary-color;
+            color: vars.$secondary;
+            border-color: vars.$secondary;
         }
 
         &_error {
-            color: vars.$error-color;
+            color: vars.$error;
         }
     }
 
     &__error {
-        color: vars.$error-color;
+        color: vars.$error;
     }
 
     &__btn {
-        @include mixin.btn;
+        @include mixins.btn;
         justify-self: center;
     }
 }

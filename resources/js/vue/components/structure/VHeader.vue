@@ -1,63 +1,76 @@
 <script setup>
 import Logout from '../pages/auth/partials/Logout.vue';
 </script>
+
 <template>
     <header class="header">
-        <RouterLink class="header__logo-link" :to="{ name: 'Main' }">
-            <!-- Пример подключения логотипа. -->
-            <!-- Логотип должен находиться в папке public/images. -->
-            <img class="header__logo" src="/images/logo.png" alt="Название приложения">
+        <!-- Логотип -->
+        <RouterLink class="header__logo-link"
+            :to="{ name: 'Main' }"
+            :title="appName">
+            <img class="header__logo" src="/images/logo.png" :alt="appName">
         </RouterLink>
+        <!-- Навигационные панели -->
         <div class="header__navbars">
-            <nav class="header__nav-lower">
-                <ul class="header__list">
-                    <li v-if="$auth.user.role === 'guest'">
-                        <RouterLink class="header__link" :to="{ name: 'Register' }">
-                            Регистрация
-                        </RouterLink>
-                    </li>
-                    <li v-if="$auth.user.role === 'guest'">
-                        <RouterLink class="header__link" :to="{ name: 'Login' }">
-                            Вход
-                        </RouterLink>
-                    </li>
-                    <li v-if="$auth.user.role !== 'guest'">
-                        <Logout></Logout>
-                    </li>
+            <!-- Навигационная панель (верхняя) -->
+            <nav class="header__nav-upper">
+                <ul class="header__list-upper">
+                    <!-- Только для НЕавторизованного пользователя -->
+                    <template v-if="$auth.user.role === 'guest'">
+                        <li>
+                            <RouterLink class="header__link-upper" :to="{ name: 'Register' }">
+                                Регистрация
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink class="header__link-upper" :to="{ name: 'Login' }">
+                                Вход
+                            </RouterLink>
+                        </li>
+                    </template>
+                    <!-- Только для авторизованного пользователя -->
+                    <template v-else>
+                        <li>
+                            <Logout></Logout>
+                        </li>
+                    </template>
                 </ul>
             </nav>
-            <nav class="header__nav-upper">
-                <ul class="header__list-up">
-                    <!-- Пример подключения ссылки. -->
-
+            <!-- Навигационная панель (нижняя) -->
+            <nav class="header__nav-lower">
+                <ul class="header__list-lower">
                     <li>
-                        <RouterLink class="header__link-up" :to="{ name: 'Main' }">
+                        <RouterLink class="header__link-lower" :to="{ name: 'Main' }">
                             Главная
                         </RouterLink>
                     </li>
-                    <li v-if="$auth.user.role === 'user'">
-                        <RouterLink class="header__link-up" :to="{ name: 'Applications' }">
-                            Объявления
-                        </RouterLink>
-                    </li>
-                    <li v-if="$auth.user.role === 'admin'">
-                        <RouterLink class="header__link-up" :to="{ name: 'AdminPanel' }">
-                            Панель администратора
-                        </RouterLink>
-                    </li>
-                    <li v-if="$auth.user.role === 'user'">
-                        <RouterLink class="header__link-up" :to="{ name: 'UserProfile' }">
-                            Профиль пользователя
-                        </RouterLink>
-                    </li>
-                </ul>
-                <ul class="header__list-up_second">
-                    <li v-if="$auth.user.role === 'user'">
-                        <div class="header__container">
-                            <img class="header__userPic" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
-                            <p class="header__h2">{{ $auth.user.login }}</p>
-                        </div>
-                    </li>
+                    <!-- Только для пользователя с ролью user -->
+                    <template v-if="$auth.user.role === 'user'">
+                        <li>
+                            <RouterLink class="header__link-lower" :to="{ name: 'Applications' }">
+                                Объявления
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <RouterLink class="header__link-lower" :to="{ name: 'UserProfile' }">
+                                Профиль пользователя
+                            </RouterLink>
+                        </li>
+                        <li>
+                            <div class="header__container">
+                                <img class="header__userPic" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
+                                <p class="header__userLogin">{{ $auth.user.login }}</p>
+                            </div>
+                        </li>
+                    </template>
+                    <!-- Только для пользователя с ролью admin -->
+                    <template v-else-if="$auth.user.role === 'admin'">
+                        <li>
+                            <RouterLink class="header__link-lower" :to="{ name: 'AdminPanel' }">
+                                Панель администратора
+                            </RouterLink>
+                        </li>
+                    </template>
                 </ul>
             </nav>
         </div>
@@ -67,183 +80,136 @@ import Logout from '../pages/auth/partials/Logout.vue';
 <style lang="scss">
 .header {
     @include innerContainer;
+
     display: grid;
     grid-template-columns: max-content 1fr;
     grid-template-areas: 'logo-link navbars';
     align-items: center;
-    gap: 2rem;
     align-content: center;
-    background-color: $primary-color;
+    gap: 2rem;
+    color: $primary;
+    background-color: $secondary;
+    box-shadow: -3px 0 3px 1px $accent;
 
     @include mobile {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, max-content);
-        grid-template-areas: 'logo-link' 'navbars';
-        gap: 1rem;
+        grid-template-areas:
+            'logo-link'
+            'navbars';
         justify-items: center;
+        gap: 1rem;
     }
 
     &__logo-link {
         grid-area: logo-link;
+    }
 
+    &__logo {
+        height: 3rem;
+        object-fit: contain;
     }
 
     &__navbars {
-        display: grid;
-        grid-template-rows: max-content max-content;
-        grid-auto-flow: row;
-        grid-template-areas: 'nav-upper' 'nav-lower';
         grid-area: navbars;
-
-        gap: 0.5rem;
-    }
-
-
-
-    // .header__container
-
-    &__container {
         display: grid;
-        grid-template-columns: repeat(2, max-content);
+        grid-template-rows: repeat(2, max-content);
         grid-template-areas:
-            'pic info';
-        padding: 5px;
-
-    }
-
-    // .header__userPic
-
-    &__userPic {
-        width: 50px;
-        grid-area: pic;
-        border-radius: 15px;
-    }
-
-    // .header__h2
-
-    &__h2 {
-        padding-top: 10px;
-        margin-left: 10px;
-        grid-area: info;
-        font-size: 15pt;
-        text-align: center;
-
-    }
-
-
-
-    &__logo {
-        width: 150px;
-        transition: transform 0.2s ease-in-out;
-
-
-        filter: brightness(0) saturate(100%) invert(49%) sepia(67%) saturate(783%) hue-rotate(326deg) brightness(99%) contrast(89%);
-        border-radius: 15px;
-
-
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-
-    // .header__nav
-    &__nav-lower {
-        grid-area: nav-lower;
-        align-self: end;
+            'nav-upper'
+            'nav-lower';
+        gap: 1rem;
     }
 
     &__nav-upper {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-areas: 'list list2';
-        margin-right: calc(max(50px, 5%) * -1);
         grid-area: nav-upper;
-        align-self: start;
-        background-color: $secondary-color;
-        border-bottom-right-radius: 15px;
-        border-bottom-left-radius: 15px;
     }
 
-    &__list-up {
-        display: grid;
-        padding-bottom: 10px;
-        grid-area: list;
-        list-style-type: none;
+    &__nav-lower {
+        grid-area: nav-lower;
+    }
 
+    &__list-upper,
+    &__list-lower {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 1rem;
-        align-items: top;
-
-        @include mobile {
-            flex-direction: column;
-            align-self: center;
-        }
-    }
-
-    &__list-up_second {
-        display: grid;
-        grid-area: list2;
-        justify-content: end;
         list-style-type: none;
-    }
-
-    // .header__list
-
-    &__list {
-        list-style-type: none;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 1rem;
         align-items: center;
-
+        position: relative;
 
         @include mobile {
             flex-direction: column;
-            align-self: center;
         }
     }
 
-    // .header__link
-    &__link-up {
+    &__link-upper,
+    &__link-lower {
         display: inline-block;
-        font-size: 12pt;
-        color: $tertiary-color;
+        color: inherit;
         text-decoration: none;
-        margin-left: 5px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        transition: all 0.2s ease-in-out;
-        background: transparent;
         cursor: pointer;
-        border: 2px solid $tertiary-color;
-        padding: 10px 15px;
+    }
 
-        &:hover {
-            background-color: $tertiary-color;
-            color: $secondary-color;
+    &__link-upper {
+        position: relative;
+        top: -0.25rem;
+        padding: 0.5rem 1rem 0.25rem 1rem;
+        color: $primary;
+        background-color: $accent;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: $accent;
+            background-color: $primary;
+            transform: translateY(0.25rem);
+        }
+
+        @include mobile {
+            border-radius: 0.5rem;
+
+            &:hover,
+            &:focus {
+                color: $accent;
+                background-color: $primary;
+                transform: translateX(0.25rem);
+            }
         }
     }
 
-    &__link {
-        display: inline-block;
-        color: $secondary-color;
-        background-color: $tertiary-color;
-        border: 3px solid $tertiary-color;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-        text-decoration: none;
-        transition: all 0.2s ease-in-out;
-        cursor: pointer;
-        background-color: $tertiary-color;
-        padding: 10px 15px;
-        font-size: 14pt;
+    &__link-lower {
+        position: relative;
+        bottom: -0.25rem;
+        padding: 0.25rem 1rem 0.5rem 1rem;
+        color: $primary;
+        background-color: $accent;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
 
-        &:hover {
-            background-color: $secondary-color;
-            color: $tertiary-color;
+        &:hover,
+        &:focus {
+            color: $accent;
+            background-color: $primary;
+            transform: translateY(-0.25rem);
+        }
+
+        @include mobile {
+            border-radius: 0.5rem;
+
+            &:hover,
+            &:focus {
+                color: $accent;
+                background-color: $primary;
+                transform: translateX(0.25rem);
+            }
         }
     }
 }

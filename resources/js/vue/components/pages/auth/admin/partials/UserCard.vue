@@ -42,7 +42,7 @@ const emit = defineEmits(['deleteUser']);
         align-content: start;
         justify-content: center;
 
-        box-shadow: 0px 3px 3px 0px $primary-color;
+        box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         text-align: center;
     }

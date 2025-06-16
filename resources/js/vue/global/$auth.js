@@ -1,5 +1,5 @@
 import { reactive } from 'vue';
-import axios from 'axios';
+
 /**
  * @reactive {object} Данные аутентификации.
  */
@@ -213,5 +213,7 @@ const $auth = reactive({
         }
     },
 });
+
 $auth.getUser();
+
 export default $auth;

@@ -1,5 +1,4 @@
 <script setup>
-// Импорт компонентов для хедера и футера.
 import VHeader from "./structure/VHeader.vue";
 import VFooter from "./structure/VFooter.vue";
 </script>
@@ -20,20 +19,23 @@ import VFooter from "./structure/VFooter.vue";
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Gothic A1;
 }
 
 // Первоначальная разметка.
 .app {
     display: grid;
     grid-template-rows:
-        max-content 1fr max-content;
+        max-content
+        1fr
+        max-content;
     grid-template-areas:
         'header'
         'main'
         'footer';
     min-height: 100vh;
-    font-family: Gothic A1;
+    font-family: 'Gothic A1';
+    background-color: $primary;
+    color: $secondary;
 
     &__header {
         grid-area: header;
@@ -47,6 +49,5 @@ import VFooter from "./structure/VFooter.vue";
     &__footer {
         grid-area: footer;
     }
-
 }
 </style>
