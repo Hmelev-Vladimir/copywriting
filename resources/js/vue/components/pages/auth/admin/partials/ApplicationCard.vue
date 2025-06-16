@@ -12,7 +12,7 @@ const emit = defineEmits(['deleteApplication']);
 <template>
     <article class="adminApplication-card">
         <div class="adminApplication-card__item">
-            <img class="adminApplication-card__cover" :src="`/storage/${application.cover}`" :alt="application.title">
+            <img class="adminApplication-card__cover" :src="`${appURL}/storage/${application.cover}`" :alt="application.title">
             <h3 class="adminApplication-card__title"> {{ application.title }} </h3>
             <p class="adminApplication-card__theme">Тема: {{ application.theme }}</p>
             <p class="adminApplication-card__price">{{ application.price }} РУБ</p>
