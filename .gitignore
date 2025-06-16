@@ -4,7 +4,8 @@
 /public/hot
 /storage/*.key
 /storage/app/public/*
-!/storage/app/public/avatar.jpg
+!/storage/app/public/profile.jpg
+!/storage/app/public/default-featured-image.jpg
 /vendor
 # .env
 .env.backup

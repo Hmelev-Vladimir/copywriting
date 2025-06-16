@@ -1,5 +1,6 @@
 <template>
     <section class="main__welcome welcome">
+        <div></div>
         <div class="welcome__logo"> <img src="/images/logo.png" alt="Название проекта"></div>
         <div class="welcome__head">
             <div class=" welcome__head__items">
@@ -44,6 +45,9 @@
 
 
     &__logo {
+        & img {
+            height: 100px;
+        }
     }
 
 
