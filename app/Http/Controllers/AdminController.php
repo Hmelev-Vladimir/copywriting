@@ -7,9 +7,7 @@ use App\Models\User;
 
 class AdminController extends Controller
 {
-    //
-       //
-       public function getUser(Request $request){
+    public function getUser(Request $request){
         $users = User::orderBy('login')->get();
         return response()->json([
             'users' => $users

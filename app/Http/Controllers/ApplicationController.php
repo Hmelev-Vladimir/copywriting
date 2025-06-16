@@ -7,12 +7,10 @@ use App\Models\User;
 use App\Http\Requests\ApplicationUpdateRequest;
 use App\Http\Requests\ApplicationCreateRequest;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
-    //
     public function getList(Request $request){
         $applications = Application::orderBy('created_at','desc')->get();
         return response()->json([

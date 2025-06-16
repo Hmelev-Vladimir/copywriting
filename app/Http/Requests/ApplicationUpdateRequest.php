@@ -14,7 +14,7 @@ class ApplicationUpdateRequest extends ApplicationCreateRequest
         return array_merge (
             parent::rules(),
             [
-                'cover' => ['nullable','image','max:10000'],
+                'cover' => ['nullable', 'image', 'mimes:png,jpg,jpeg', 'max:10000'],
             ]
         );
     }

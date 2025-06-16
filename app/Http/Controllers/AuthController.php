@@ -10,13 +10,13 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    //
     public function user(Request $request)
     {
         return response()->json([
             'user' => $request->user(),
         ], 200);
     }
+
     public function login(Request $request)
     {
         // Ищем пользователя по логину.

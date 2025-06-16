@@ -22,7 +22,20 @@ class ProfilePicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'pic' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:10000'],
+        ];
+    }
+
+    /**
+     * Пользовательские сообщения об ошибках.
+     */
+    public function messages(): array
+    {
+        return [
+            'pic.required' => '«Изображение профиля» — обязательное поле.',
+            'pic.image' => '«Изображение профиля» должно быть изображением.',
+            'pic.mimes' => '«Изображение профиля» должно быть в формате: .png, .jpg или .jpeg.',
+            'pic.max' => '«Изображение профиля» не должно превышать 10 МБ.',
         ];
     }
 }

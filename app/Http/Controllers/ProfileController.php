@@ -1,17 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Http\Requests\ProfileUpdateRequest;
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
-    //
-
     public function update (ProfileUpdateRequest $request) {
         $profile = User::findOrFail($request->id);
         if ($request->user()->cannot('update', $profile)) {
@@ -52,5 +50,4 @@ class ProfileController extends Controller
             'profile' => $profile
         ], 200);
     }
-
 }

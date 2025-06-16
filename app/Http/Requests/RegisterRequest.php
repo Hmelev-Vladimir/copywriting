@@ -27,38 +27,41 @@ class RegisterRequest extends FormRequest
             'phone' => ['required', 'regex:/^\\+?[1-9][0-9]{7,14}$/i'],
             'email' => ['required', 'email', 'between:1,255', 'unique:users'],
             'login' => ['required', 'string', 'between:1,255', 'unique:users'],
-            'password' => ['required', 'string', 'between:6,255', 'confirmed']
+            'password' => ['required', 'string', 'between:6,255', 'confirmed'],
         ];
     }
 
-     /**
+    /**
      * Пользовательские сообщения об ошибках.
      */
     public function messages(): array
     {
         return [
-            'surname.required' => "Необходимо ввести фамилию",
-            'surname.string' => "Фамилия введена неправильно",
-            'surname.min' => "Фамилия не должна быть меньшее 1 символа",
-            'surname.max' => "Фамилия не должна превышать 255 символов",
-            'name.required' => "Необходимо ввести имя",
-            'name.string' => "Имя введена неправильно",
-            'name.min' => "Имя не должно быть меньшее 1 символа",
-            'name.max' => "Имя не должно превышать 255 символов",
-            'email.required' => "Необходимо ввести email",
-            'email.email' => "Email введен неправильно",
-            'phone.required' => "Необходимо ввести телефон",
-            'phone.string' => "Телефон введен неправильно",
-            'phone.regex' => "Неверный формат телефона",
-            'email.unique' => "Данный email уже используеться",
-            'login.required' => "Необходимо ввести логин",
-            'login.string' => "Логин введен неправильно",
-            'login.unique' => "Данный логин уже используеться",
-            'password.required' => "Необходимо ввести пароль",
-            'password.string' => "Пароль введен неправильно",
-            'password.min' => "Пароль не должн быть меньшее 6 символов",
-            'password.max' => "Пароль не должна превышать 255 символов",
-            'password.confirmed' => "Пароли не совпадают",
+            'surname.required' => '«Фамилия» — обязательное поле.',
+            'surname.string' => '«Фамилия» должна быть строкой.',
+            'surname.between' => 'Длина «Фамилии» должна быть от :min до :max символов.',
+
+            'name.required' => '«Имя» — обязательное поле.',
+            'name.string' => '«Имя» должно быть строкой.',
+            'name.between' => 'Длина «Имени» должна быть от :min до :max символов.',
+
+            'phone.required' => '«Телефон» — обязательное поле.',
+            'phone.regex' => 'Неверный формат «Телефона». Пример: +71234567890.',
+
+            'email.required' => '«Email» — обязательное поле.',
+            'email.email' => '«Email» должен быть действительным адресом.',
+            'email.between' => 'Длина «Email» должна быть от :min до :max символов.',
+            'email.unique' => 'Такой «Email» уже зарегистрирован.',
+
+            'login.required' => '«Логин» — обязательное поле.',
+            'login.string' => '«Логин» должен быть строкой.',
+            'login.between' => 'Длина «Логина» должна быть от :min до :max символов.',
+            'login.unique' => 'Такой «Логин» уже занят.',
+
+            'password.required' => '«Пароль» — обязательное поле.',
+            'password.string' => '«Пароль» должен быть строкой.',
+            'password.between' => 'Длина «Пароля» должна быть от :min до :max символов.',
+            'password.confirmed' => 'Пароли не совпадают.',
         ];
     }
 }
