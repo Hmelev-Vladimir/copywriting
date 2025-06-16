@@ -56,7 +56,10 @@ function deleteUser(user) {
 .users-admin {
     grid-area: applications;
 
-    &__userName {}
+    &__userName {
+        @include title;
+        justify-self: start;
+    }
 
 
     &__adminUserContainer {

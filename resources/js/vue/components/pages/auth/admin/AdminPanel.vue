@@ -2,7 +2,7 @@
     <section class="admin">
         <div class="admin__sidenav">
             <RouterLink :to="{ name: 'ApplicationsAdmin' }">
-                Обьявления
+                Объявления
             </RouterLink>
             <RouterLink :to="{ name: 'UsersAdmin' }">
                 Пользователи

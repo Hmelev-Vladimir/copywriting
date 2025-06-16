@@ -43,7 +43,7 @@ onBeforeMount(() => {
 
 <template>
     <section class="adminApplications">
-        <h1 class="adminApplications__title">Обьявления</h1>
+        <h1 class="adminApplications__title">Объявления</h1>
         <div class="adminApplications__container" v-if="!load">
             <ApplicationCard v-for="application in applications" :application="application"
                 @deleteApplication="deleteApplication">
@@ -71,7 +71,8 @@ onBeforeMount(() => {
     &__title {
 
         grid-area: title;
-        @include title
+        @include title;
+        justify-self: start;
     }
 
     // .posts__container
