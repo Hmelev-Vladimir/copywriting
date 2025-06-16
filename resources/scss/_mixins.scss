@@ -14,51 +14,57 @@
 
 // Заголовок.
 @mixin title {
-    font-size: 2rem;
-    padding-bottom: 0.5rem;
     display: grid;
+    justify-self: center;
     place-items: center;
-    margin-top: 20px;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 3px solid vars.$secondary;
     color: vars.$accent;
+    text-shadow: 1px 1px 3px vars.$secondary;
+    font-size: 2rem;
 }
 
 // Карточка.
 @mixin card {
-    padding: 30px;
-    border-radius: 10px;
+    padding: 2rem;
+    border-radius: 1rem;
     border: 1px solid vars.$secondary;
-    box-shadow: 4px 10px 8px 0px  vars.$primary;
+    box-shadow: 2px 2px 4px 0px  vars.$secondary;
     transition: all 0.2s ease-in-out;
 
     &:hover {
-        box-shadow: 6px 12px 8px 0px  vars.$primary;
+        box-shadow: 4px 4px 4px 0px  vars.$secondary;
     }
 }
 
 // Кнопка.
 @mixin btn {
     display: inline-block;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
     padding: 0.5rem 1rem;
+    color: vars.$secondary;
     background-color: transparent;
-    color: vars.$primary;
     font-size: 1rem;
     border: 3px solid vars.$secondary;
-    border-image: linear-gradient(45deg,
-            vars.$secondary,
-            vars.$accent );
+    border-image: linear-gradient(
+        45deg,
+        vars.$secondary,
+        vars.$accent,
+        );
     border-image-slice: 1;
     text-decoration: none;
     font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    outline: none;
 
     &:hover {
-        color: white;
-        background:
-            linear-gradient(45deg,
-                vars.$primary,
-                vars.$secondary );
-        ;
+        color: vars.$primary;
+        background: linear-gradient(
+            45deg,
+            vars.$secondary,
+            vars.$accent,
+        );
     }
 }
 

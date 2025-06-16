@@ -28,7 +28,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Аутентификация.
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::post('passwordReset', [AuthController::class, 'passwordReset']);
 
     Route::prefix('users')-> group(function () {
         Route::get('getUser', [AllUsersController::class, 'getUser']);

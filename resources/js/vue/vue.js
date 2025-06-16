@@ -13,7 +13,7 @@ app.use(router);
 import App from './components/App.vue';
 app.component('App', App);
 
-import Load from './components/mods/Load.vue';
+import Load from './components/global/Load.vue';
 app.component('Load', Load);
 
 app.mount('#app');
