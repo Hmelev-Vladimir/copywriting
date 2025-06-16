@@ -60,7 +60,7 @@ class ApplicationController extends Controller
         if ($request->cover !== null) {
             if (
                 // Если изображение не является заглушкой.
-                $application->cover !== 'default-featured-image.jpg' &&
+                $application->cover !== 'placeholder.png' &&
                 // А также существует на диске.
                 $disk->exists($application->cover)
             ) {
@@ -87,7 +87,7 @@ class ApplicationController extends Controller
 
         $disk = Storage::disk('public');
         if  (
-           $application->cover !== 'default-featured-image.jpg' && $disk->exists($application->cover)
+           $application->cover !== 'placeholder.png' && $disk->exists($application->cover)
         ) {
             $disk->delete($application->cover);
         }

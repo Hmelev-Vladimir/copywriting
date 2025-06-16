@@ -12,7 +12,7 @@
             <p class="applicationShow__description">{{ application.description }}</p>
             <p class="applicationShow__status"> {{ application.status }} </p>
             <div class="applicationShow__dateCont">
-                <div class="applicationShow__publicationDate">Обупликовано в: {{ new
+                <div class="applicationShow__publicationDate">Опубликовано в: {{ new
                     Date(application.publicationDate).toLocaleString() }}
                 </div>
                 <div class="applicationShow__created-at">Созданно в: {{ new
