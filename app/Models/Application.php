@@ -9,6 +9,9 @@ class Application extends Model
 {
     use HasFactory;
 
+    /**
+     * Поля для автозаполнения.
+     */
     protected $fillable = [
         'title',
         'theme',
@@ -19,10 +22,18 @@ class Application extends Model
         'publicationDate',
         'cover',
     ];
+
+    /**
+     * Связи для загрузки.
+     */
     protected $with = [
-       'user'
+       'user',
     ];
 
+
+    /**
+     * Пользователь, который создал заявку.
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

@@ -33,21 +33,7 @@ class User extends Authenticatable
         'balance',
     ];
 
-    protected $appends = ['full_name'];
-
-    protected function fullName(): Attribute
-    {
-        return Attribute::make(
-            get: function () {
-                $fullName = $this->surname . ' ' . $this->name;
-                if ($this->patronymic !== null) {
-                    $fullName .= ' ' . $this->patronymic;
-                }
-                return $fullName;
-            },
-        );
-    }
-    /**
+        /**
      * The attributes that should be hidden for serialization.
      *
      * @var array<int, string>
@@ -66,6 +52,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Поля для сериализации.
+     */
+    protected $appends = ['full_name'];
+
+    /**
+     * Полное имя пользователя.
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: function () {
+                $fullName = $this->surname . ' ' . $this->name;
+                if ($this->patronymic !== null) {
+                    $fullName .= ' ' . $this->patronymic;
+                }
+                return $fullName;
+            },
+        );
+    }
+
+    /**
+     * Заявки, которые создал пользователь.
+     */
     public function applications(): HasMany
     {
         return $this->hasMany(Application::class);
