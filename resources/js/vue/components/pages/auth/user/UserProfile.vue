@@ -74,7 +74,7 @@ function deleteUser() {
         padding-top: 20px;
         padding-bottom: 20px;
         padding-left: 10px;
-        box-shadow: 0px 0px 3px 0px $primary;
+        box-shadow: 0px 0px 3px 0px $primary-color;
         border-bottom-left-radius: 15px;
         border-bottom-right-radius: 15px;
     }
@@ -88,9 +88,9 @@ function deleteUser() {
     &__h2 {
         font-size: 20pt;
         text-align: center;
-        color: $secondary;
+        color: $secondary-color;
         padding: 5px;
-        box-shadow: 0px 0px 3px 0px $primary;
+        box-shadow: 0px 0px 3px 0px $primary-color;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
 
@@ -103,15 +103,15 @@ function deleteUser() {
         list-style: none;
         gap: 10px;
         font-size: 15pt;
-        box-shadow: 0px 3px 3px 0px $primary;
+        box-shadow: 0px 3px 3px 0px $primary-color;
         border-radius: 15px;
     }
 
     &__listItem {
-        color: $secondary;
+        color: $secondary-color;
         font-weight: bold;
         padding: 5px;
-        box-shadow: 0px 0px 3px 0px $primary;
+        box-shadow: 0px 0px 3px 0px $primary-color;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -176,7 +176,7 @@ function deleteUser() {
     // .userProfile-image__error
 
     &__error {
-        color: $error;
+        color: $error-color;
     }
 
     // .userProfile-image__btn
