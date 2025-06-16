@@ -21,220 +21,152 @@ function deleteUser() {
                 console.log(error.response);
                 alert('Ошибка! Пользователя с подобным id нет');
             });
-
     }
 };
 </script>
 
 <template>
-    <section class="userProfile">
-        <div class="userProfile-info">
-            <h2 class="userProfile-info__h2">Профиль: {{ $auth.user.login }}</h2>
-            <ul class="userProfile-info__list">
-                <li class="userProfile-info__listItem">Имя: {{ $auth.user.name }}</li>
-                <li class="userProfile-info__listItem">Фамилия: {{ $auth.user.surname }}</li>
-                <li class="userProfile-info__listItem">Телефон: {{ $auth.user.phone }}</li>
-                <li class="userProfile-info__listItem">Email: {{ $auth.user.email }}</li>
-            </ul>
-            <div class="userProfile-info__btn-container">
-                <RouterLink class="userProfile-info__btn"
-                    :to="{ name: 'UserProfileUpdate', params: { id: $auth.user.id } }">
-                    Редактировать
-                </RouterLink>
-                <button class="userProfile-info__btn" type="button" @click="deleteUser">Удалить</button>
-            </div>
+    <section class="profile">
+        <div class="profile__header">
+            <h1 class="profile__title">Профиль</h1>
+            <RouterLink class="profile__button" :to="{ name: 'ApplicationCreate' }">
+                Создать объявление
+            </RouterLink>
         </div>
-        <div class="userProfile-image">
-            <img class="userProfile-image__cover" :src="`${appURL}/storage/${$auth.user.pic}`" :alt="$auth.user.name">
 
-            <ProfilePicForm class="post-create__form">
-            </ProfilePicForm>
-        </div>
-        <div class="userProfile-applications">
-            <RouterLink class="posts__btn" :to="{ name: 'ApplicationCreate' }">Новое объявление</RouterLink>
+        <div class="profile__content">
+            <div class="profile__image-section">
+                <div class="profile__image-container">
+                    <img class="profile__avatar"
+                        :src="`${appURL}/storage/${$auth.user.pic}`" :alt="$auth.user.name">
+                </div>
+                <ProfilePicForm class="profile__form" />
+            </div>
+
+            <div class="profile__info-section">
+                <div class="profile__info">
+                    <h2 class="profile__username">{{ $auth.user.login }}</h2>
+                    <div class="profile__grid">
+                        <span class="profile__label">Имя:</span>
+                        <span class="profile__value">{{ $auth.user.name }}</span>
+
+                        <span class="profile__label">Фамилия:</span>
+                        <span class="profile__value">{{ $auth.user.surname }}</span>
+
+                        <span class="profile__label">Телефон:</span>
+                        <span class="profile__value">{{ $auth.user.phone }}</span>
+
+                        <span class="profile__label">Email:</span>
+                        <span class="profile__value">{{ $auth.user.email }}</span>
+                    </div>
+                </div>
+
+                <div class="profile__actions">
+                    <RouterLink
+                        class="profile__button"
+                        :to="{ name: 'UserProfileUpdate', params: { id: $auth.user.id } }">
+                        Редактировать профиль
+                    </RouterLink>
+                    <button class="profile__button" type="button" @click="deleteUser">
+                        Удалить аккаунт
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 </template>
 
 <style lang="scss">
-.userProfile {
-    padding-top: 20px;
-    display: grid;
-    justify-self: center;
-    // grid-template-columns: repeat(2, max-content);
-    // grid-template-areas: 'profile-image' 'profile-info';
-    grid-template-columns: repeat(2, max-content);
-    grid-template-areas:
-        'pic info';
-}
+.profile {
+    @include outerContainer;
 
-.userProfile-info {
-    grid-area: info;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 
-    &__btn-container {
-        margin-top: 20px;
+    &__header {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-left: 10px;
-        box-shadow: 0px 0px 3px 0px $primary;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
     }
 
-    &__btn {
+    &__title {
+        @include title;
+        margin: 0;
+    }
+
+    &__content {
         display: grid;
-        align-self: center;
-        @include btn;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+        }
     }
 
-    &__h2 {
-        font-size: 20pt;
-        text-align: center;
+    &__image-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__image-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__avatar {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        object-fit: cover;
+    }
+
+    &__info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    &__info {
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 8px $secondary;
+    }
+
+    &__username {
+        font-size: 1.5rem;
         color: $secondary;
-        padding: 5px;
-        box-shadow: 0px 0px 3px 0px $primary;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
     }
 
-    &__list {
-        margin-top: 10px;
-        padding: 10px;
+    &__grid {
         display: grid;
-        list-style: none;
-        gap: 10px;
-        font-size: 15pt;
-        box-shadow: 0px 3px 3px 0px $primary;
-        border-radius: 15px;
+        grid-template-columns: 120px 1fr;
+        gap: 1rem;
     }
-
-    &__listItem {
-        color: $secondary;
-        font-weight: bold;
-        padding: 5px;
-        box-shadow: 0px 0px 3px 0px $primary;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-}
-
-.userProfile-image {
-    padding-right: 10px;
-    display: grid;
-    grid-template-rows: repeat(3, max-content);
-    grid-template-areas: 'cover' 'switch-form-btn' 'form';
-    grid-area: pic;
-    width: 500px;
-    gap: 20px;
-    // .userProfile-image__cover
-
-    &__cover {
-        grid-area: cover;
-    }
-
-    &__btnSubmit {
-        grid-area: submit;
-        @include btn;
-    }
-
-
-    &__switch-form-btn {
-        grid-area: switch-form-btn;
-        display: grid;
-        align-self: center;
-        @include btn;
-    }
-
-    // .userProfile-image__form
-
-    &__form {
-        display: grid;
-        grid-area: form;
-        grid-template-rows: repeat(2, max-content);
-        grid-template-areas: 'input' 'submit';
-    }
-
-    // .userProfile-image__row
-
-    &__row {
-        grid-area: input;
-        display: grid;
-        grid-auto-rows: max-content;
-        grid-auto-flow: row;
-        gap: 0.5rem;
-    }
-
-    // .userProfile-image__label
 
     &__label {
-        font-size: 1.2rem;
-        text-align: center;
+        font-weight: 600;
+        color: $secondary;
     }
 
-    // .userProfile-image__input
-
-
-    // .userProfile-image__error
-
-    &__error {
-        color: $error;
+    &__value {
+        color: $secondary;
     }
 
-    // .userProfile-image__btn
+    &__actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
 
-    &__btn {
-        grid-area: submit;
-        display: grid;
-        justify-self: center;
-        margin-top: 20px;
+    &__button {
         @include btn;
     }
-
-    // .userProfile-image__cover
-
-    &__cover {
-        justify-self: center;
-        width: 200px;
-        border-radius: 15px;
-    }
-}
-
-.posts {
-
-
-    &__btn {
-        grid-area: submit;
-        display: grid;
-        justify-self: center;
-        margin-top: 20px;
-        @include btn;
-    }
-}
-
-input[type="file"]::file-selector-button {
-    border-radius: 4px;
-    padding: 0 16px;
-    height: 40px;
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);
-    margin-right: 16px;
-    transition: background-color 200ms;
-}
-
-// /* file upload button hover state */
-input[type="file"]::file-selector-button:hover {
-    background-color: #f3f4f6;
-}
-
-// /* file upload button active state */
-input[type="file"]::file-selector-button:active {
-    background-color: #e5e7eb;
 }
 </style>

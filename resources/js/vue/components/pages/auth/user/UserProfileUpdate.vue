@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router';
 import ProfileForm from './partials/ProfileForm.vue';
 import $auth from '#/$auth';
 
+// Входные данные компонента.
 const props = defineProps({
     id: {
         type: [String, Number],
@@ -14,6 +15,7 @@ const props = defineProps({
 // Роутер.
 const router = useRouter();
 
+// Пользователь.
 const user = reactive({
     id: -1,
     login: '',
@@ -26,6 +28,7 @@ const user = reactive({
     password_confirmation: '',
 });
 
+// Ошибки.
 const errors = reactive({
     id: null,
     login: null,
@@ -37,6 +40,9 @@ const errors = reactive({
     password: null,
 });
 
+/**
+ * Получает пользователя.
+ */
 function getUser() {
     axios.get('/api/users/getUser', { params: { id: props.id } })
         .then((response) => {
@@ -57,6 +63,9 @@ function getUser() {
         });
 }
 
+/**
+ * Обновляет профиль.
+ */
 function updateProfile() {
     const formData = new FormData();
     formData.append('id', user.id);
@@ -88,6 +97,7 @@ function updateProfile() {
             }
         });
 }
+
 onMounted(() => {
     getUser();
 });
@@ -95,15 +105,19 @@ onMounted(() => {
 
 <template>
     <section class="post-create">
-        <h1 class="post-create__title" v-once>{{ $auth.user.login }}</h1>
+        <h1 class="post-create__title" v-once>
+            Редактирование профиля
+        </h1>
         <ProfileForm class="post-create__form" :user="user" :errors="errors" @send-form="updateProfile">
         </ProfileForm>
     </section>
-
 </template>
+
 <style lang="scss">
 .post-create {
     @include outerContainer;
+    @include card;
+
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: grid;
