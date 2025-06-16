@@ -53,14 +53,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
                         </li>
                         <li>
                             <RouterLink class="header__link-lower" :to="{ name: 'UserProfile' }">
-                                Профиль пользователя
+                                Профиль
                             </RouterLink>
-                        </li>
-                        <li>
-                            <div class="header__container">
-                                <img class="header__userPic" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
-                                <p class="header__userLogin">{{ $auth.user.login }}</p>
-                            </div>
                         </li>
                     </template>
                     <!-- Только для пользователя с ролью admin -->
@@ -71,6 +65,14 @@ import Logout from '../pages/auth/partials/Logout.vue';
                             </RouterLink>
                         </li>
                     </template>
+                    <li v-if="$auth.user.role !== 'guest'">
+                        <span class="header__user-container">
+                            <img class="header__user-pic"
+                                :src="`/storage/${$auth.user.pic}`"
+                                :alt="$auth.user.name">
+                            <span>{{ $auth.user.login }}</span>
+                        </span>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -166,6 +168,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         cursor: pointer;
         border: none;
         outline: none;
+        transition: all 0.5s ease-in-out;
     }
 
     &__link-upper {
@@ -178,7 +181,6 @@ import Logout from '../pages/auth/partials/Logout.vue';
         border-bottom-right-radius: 0.5rem;
         font-size: 0.9rem;
         font-weight: 600;
-        transition: all 0.3s ease-in-out;
 
         &:hover,
         &:focus {
@@ -211,12 +213,12 @@ import Logout from '../pages/auth/partials/Logout.vue';
         border-top-right-radius: 0.5rem;
         font-size: 1rem;
         font-weight: 600;
-        transition: all 0.3s ease-in-out;
 
         &:hover,
         &:focus {
             color: darken($secondary, 20);
             background-color: $primary;
+            transform: translateY(-0.25rem);
         }
 
         @include mobile {
@@ -224,6 +226,21 @@ import Logout from '../pages/auth/partials/Logout.vue';
             bottom: 0;
             border-radius: 0.5rem;
         }
+    }
+
+    &__user-container {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        align-items: center;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    &__user-pic {
+        width: 1.25rem;
+        height: 1.25rem;
+        border-radius: 50%;
     }
 }
 </style>
