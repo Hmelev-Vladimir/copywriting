@@ -60,10 +60,15 @@
 
         &__items {
             display: grid;
-            grid-template-rows: auto;
-            grid-auto-flow: row;
+            grid-template-columns: auto;
+            grid-auto-flow: column;
             align-items: center;
             gap: 30px;
+            justify-content: space-evenly;
+            @media screen and (max-width: 800px) {
+                grid-auto-flow: row;
+                place-items: center;
+            }
 
         }
 
