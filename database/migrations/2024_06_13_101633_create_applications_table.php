@@ -16,7 +16,7 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('cover')
-                ->default('default-featured-image.jpg');
+                ->default('placeholder.png');
                 $table->string('title');
                 $table->string('theme');
                 $table->integer('price');

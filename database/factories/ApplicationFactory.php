@@ -22,7 +22,7 @@ class ApplicationFactory extends Factory
             'price' => fake()->numberBetween(1000, 10000),
             'description' => fake()->text(100),
             // 'status' => fake()->randomElement(['Решена']),
-            'status' => fake()->randomElement(['Обупликовано', 'На модерации', 'В архиве', 'Откликнулись', 'Куплено']),
+            'status' => fake()->randomElement(['Опубликовано', 'На модерации', 'В архиве', 'Откликнулись', 'Куплено']),
             'reason' => fake()->text(100),
             'publicationDate' => fake()->dateTimeBetween('-1 year', 'now')
         ];

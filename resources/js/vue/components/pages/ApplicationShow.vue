@@ -56,10 +56,10 @@ onBeforeMount(() => {
             <p class="applicationShow__theme">Тема: {{ application.theme }}</p>
             <p class="applicationShow__price">{{ application.price }} РУБ</p>
             <p class="applicationShow__price">Автор: {{ application.user.surname }}</p>
-            <p class="applicationShow__description">{{ application.description }}</p>
+            <p class="applicationShow__description">Описание:{{ application.description }}</p>
             <p class="applicationShow__status"> Статус объявления: {{ application.status }} </p>
             <div class="applicationShow__dateCont">
-                <div class="applicationShow__publicationDate">Обупликовано в: {{ new
+                <div class="applicationShow__publicationDate">Опубликовано в: {{ new
                     Date(application.publicationDate).toLocaleString() }}
                 </div>
                 <div class="applicationShow__created-at">Созданно в: {{ new
@@ -75,13 +75,14 @@ onBeforeMount(() => {
 <style lang="scss">
 .applicationShow {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-areas: 'cover content';
     @include outerContainer;
     margin-top: 1rem;
     margin-bottom: 1rem;
     gap: 0.6rem;
     color: $secondary;
+
     // .applicationShow__cover
 
     &__cover {
@@ -96,15 +97,16 @@ onBeforeMount(() => {
     &__item {
         grid-area: content;
         display: grid;
-        grid-template-rows: auto;
+        grid-auto-rows: max-content;
         grid-auto-flow: row;
         gap: 1rem;
+        gap: 1rem;
         margin-left: 0.5rem;
+        justify-items: start;
     }
 
     // .applicationShow__title
     &__description {
-        text-align: center;
         font-size: 1.5rem;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
@@ -114,41 +116,39 @@ onBeforeMount(() => {
     }
 
     &__title {
-        text-align: center;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
-        padding-top: 50px;
+        font-size: 26pt;
     }
 
     // .applicationShow__theme
 
     &__theme {
         display: grid;
-        padding-top: 50px;
         grid-template-columns: auto;
         grid-auto-flow: column;
-        text-align: center;
         gap: 2rem;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         font-size: 15pt;
+        border: 1px solid black;
+        padding: 10px;
     }
 
     // .applicationShow__price
 
     &__price {
-        text-align: center;
         padding-top: 50px;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         font-size: 1.5rem;
+        font-weight: bold;
 
     }
 
     // .applicationShow__status
 
     &__status {
-        text-align: center;
         padding-top: 50px;
         font-size: 1.5rem;
         box-shadow: 0px 3px 3px 0px $primary;
