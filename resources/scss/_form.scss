@@ -27,20 +27,27 @@
     &__input {
         display: inline-block;
         background-color: transparent;
-        border-bottom: 2px solid vars.$secondary;
-        border-radius: 5px;
+        border: 2px solid vars.$secondary;
+        border-bottom: 2px solid vars.$accent;
+        border-radius: 0.25rem;
         padding: 0.75rem;
         transition: all 0.2s ease-in-out;
-        color: vars.$primary;
+        color: vars.$secondary;
+        outline: none;
 
         &:hover,
         &:focus {
-            color: vars.$secondary;
-            border-color: vars.$secondary;
+            box-shadow: 0 0 5px 1px vars.$accent;
         }
 
         &_error {
             color: vars.$error;
+            border-color: vars.$error;
+
+            &:hover,
+            &:focus {
+                box-shadow: 0 0 5px 1px lighten(vars.$error, 20);
+            }
         }
     }
 

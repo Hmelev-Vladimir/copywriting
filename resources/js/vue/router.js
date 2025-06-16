@@ -1,5 +1,4 @@
 // Импорт функций создания экземпляра Vue-роутера и создания истории.
-
 import {
     createRouter,
     createWebHistory,

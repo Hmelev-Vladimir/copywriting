@@ -5,16 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\ProfilePicRequest;
-
-
 use Illuminate\Support\Facades\Storage;
-
-
 
 class PicController extends Controller
 {
-    //
-
     public function updatePic (ProfilePicRequest $request) {
         $profile = $request->user();
 
@@ -48,6 +42,4 @@ class PicController extends Controller
                 'pic' => $path
             ], 200);
     }
-
-
 }

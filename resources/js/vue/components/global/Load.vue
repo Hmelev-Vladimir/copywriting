@@ -2,12 +2,12 @@
     <div class="spinner"></div>
 </template>
 
-<style>
+<style lang="css">
 .spinner {
     width: 56px;
     height: 56px;
     display: grid;
-    animation: spinner-plncf9 4s infinite;
+    animation: spinner-rotate 4s infinite;
 }
 
 .spinner::before,
@@ -26,7 +26,7 @@
     animation-direction: reverse;
 }
 
-@keyframes spinner-plncf9 {
+@keyframes spinner-rotate {
     100% {
         transform: rotate(1turn);
     }

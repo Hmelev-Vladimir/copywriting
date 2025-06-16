@@ -18,7 +18,7 @@ const formData = reactive({
     email: '',
     login: '',
     password: '',
-    password_confirmation: ''
+    password_confirmation: '',
 });
 
 /**
@@ -31,7 +31,7 @@ const errors = reactive({
     email: null,
     phone: null,
     login: null,
-    password: null
+    password: null,
 });
 
 /**
@@ -78,6 +78,7 @@ function register() {
     <section class="register">
         <h1 class="register__title">Регистрация</h1>
         <form class="register__form form" @submit.prevent="register">
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.surname !== null }"
                     for="surname">Фамилия</label>
@@ -87,6 +88,7 @@ function register() {
                     {{ errors.surname }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.name !== null }" for="name">Имя</label>
                 <input class="form__input" :class="{ 'form__input_error': errors.name !== null }" type="text"
@@ -95,6 +97,7 @@ function register() {
                     {{ errors.name }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.email !== null }"
                     for="email">Email</label>
@@ -104,6 +107,7 @@ function register() {
                     {{ errors.email }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.phone !== null }" for="phone">Номер
                     телефона</label>
@@ -113,6 +117,7 @@ function register() {
                     {{ errors.phone }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.login !== null }"
                     for="login">Логин</label>
@@ -122,6 +127,7 @@ function register() {
                     {{ errors.login }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" :class="{ 'form__label_error': errors.password !== null }"
                     for="password">Пароль</label>
@@ -131,11 +137,13 @@ function register() {
                     {{ errors.password }}
                 </div>
             </div>
+
             <div class="form__row">
                 <label class="form__label" for="password_confirmation">Подтверждение пароля</label>
                 <input class="form__input" type="password" name="password_confirmation" id="password_confirmation"
                     placeholder="Подтвердите пароль" v-model="formData.password_confirmation">
             </div>
+
             <button class="form__btn" type="submit">
                 Зарегистрироваться
             </button>
