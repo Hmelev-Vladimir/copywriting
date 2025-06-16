@@ -5,7 +5,7 @@
             <div class="welcome__head">
                 <div class=" welcome__head__items">
                     <div class="welcome__head__item">
-                        <div class="welcome__head__item__image"> <img src="/images/paper.png" alt="Название проекта">
+                        <div class="welcome__head__item__image"> <img src="/images/paper1.png" alt="Название проекта">
                         </div>
                         <div class="welcome__head__item__title">Тексты на заказ</div>
                     </div>
@@ -31,14 +31,14 @@
                 <div class="welcome__statistics__image">
                     <img src="/images/chart.png" alt="Название проекта">
                 </div>
-                <div class="welcome__statistics__text">
+                <!-- <div class="welcome__statistics__text">
                     <ul class="welcome__statistics__text__items">
                         <li class="welcome__statistics__text__item">Тексты для лендингов</li>
                         <li class="welcome__statistics__text__item">Копирайтинг и рерайтинг</li>
                         <li class="welcome__statistics__text__item">Инфостатьи и новости</li>
                         <li class="welcome__statistics__text__item">SEO-тексты для сайтов</li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -95,7 +95,10 @@
     }
 
     &__main {
-
+        padding-top: 80px;
+        padding-bottom: 80px;
+        font-size: 15pt;
+        text-align: center;
     }
 
     &__statistics {
@@ -110,10 +113,14 @@
         }
 
         &__text {
-
+            display: grid;
             // justify-items: center;
 
             &__items {
+                display: grid;
+                grid-template-rows: auto;
+                grid-auto-flow: row;
+                align-items: center;
                 li{list-style: none;}
             }
 
