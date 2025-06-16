@@ -87,11 +87,14 @@ import Logout from '../pages/auth/partials/Logout.vue';
     align-items: center;
     align-content: center;
     gap: 2rem;
+    overflow: hidden;
     color: $primary;
     background-color: $secondary;
     box-shadow: -3px 0 3px 1px $accent;
 
     @include mobile {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(2, max-content);
         grid-template-areas:
@@ -117,15 +120,27 @@ import Logout from '../pages/auth/partials/Logout.vue';
         grid-template-areas:
             'nav-upper'
             'nav-lower';
-        gap: 1rem;
+        gap: 0.5rem;
     }
 
     &__nav-upper {
         grid-area: nav-upper;
+        display: grid;
+        justify-content: end;
+
+        @include mobile {
+            justify-content: center;
+        }
     }
 
     &__nav-lower {
         grid-area: nav-lower;
+        display: grid;
+        justify-content: start;
+
+        @include mobile {
+            justify-content: center;
+        }
     }
 
     &__list-upper,
@@ -133,7 +148,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.5rem;
         list-style-type: none;
         align-items: center;
         position: relative;
@@ -149,6 +164,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
         color: inherit;
         text-decoration: none;
         cursor: pointer;
+        border: none;
+        outline: none;
     }
 
     &__link-upper {
@@ -171,6 +188,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
         }
 
         @include mobile {
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            top: 0;
             border-radius: 0.5rem;
 
             &:hover,
@@ -184,32 +203,26 @@ import Logout from '../pages/auth/partials/Logout.vue';
 
     &__link-lower {
         position: relative;
-        bottom: -0.25rem;
-        padding: 0.25rem 1rem 0.5rem 1rem;
+        bottom: -0.5rem;
+        padding: 0.5rem 1.5rem 1rem 1.5rem;
         color: $primary;
-        background-color: $accent;
+        background-color: darken($secondary, 20);
         border-top-left-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 600;
         transition: all 0.3s ease-in-out;
 
         &:hover,
         &:focus {
-            color: $accent;
+            color: darken($secondary, 20);
             background-color: $primary;
-            transform: translateY(-0.25rem);
         }
 
         @include mobile {
+            padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+            bottom: 0;
             border-radius: 0.5rem;
-
-            &:hover,
-            &:focus {
-                color: $accent;
-                background-color: $primary;
-                transform: translateX(0.25rem);
-            }
         }
     }
 }

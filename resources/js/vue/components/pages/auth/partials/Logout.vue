@@ -21,7 +21,7 @@ function logout() {
 </script>
 
 <template>
-    <button class="header__link" @click="logout">
+    <button class="header__link-upper" @click="logout">
         Выйти
     </button>
 </template>
