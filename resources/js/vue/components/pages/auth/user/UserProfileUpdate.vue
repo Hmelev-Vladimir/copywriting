@@ -11,6 +11,7 @@ const props = defineProps({
     }
 });
 
+// Роутер.
 const router = useRouter();
 
 const user = reactive({

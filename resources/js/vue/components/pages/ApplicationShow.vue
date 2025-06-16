@@ -9,6 +9,7 @@ const props = defineProps({
     }
 });
 
+// Роутер.
 const router = useRouter();
 
 const application = reactive({
@@ -49,7 +50,7 @@ onBeforeMount(() => {
 
 <template>
     <div class="applicationShow">
-        <img class="applicationShow__cover" :src="`/storage/${application.cover}`" :alt="application.title">
+        <img class="applicationShow__cover" :src="`${appURL}/storage/${application.cover}`" :alt="application.title">
         <div class="applicationShow__item">
             <h1 class="applicationShow__title"> {{ application.title }} </h1>
             <p class="applicationShow__theme">Тема: {{ application.theme }}</p>

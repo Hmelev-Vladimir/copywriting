@@ -3,9 +3,7 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import $auth from '../../../global/$auth';
 
-/**
- * @ref {object} Роутер.
- */
+// Роутер.
 const router = useRouter();
 
 /**

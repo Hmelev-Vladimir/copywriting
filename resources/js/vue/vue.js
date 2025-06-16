@@ -6,6 +6,7 @@ import $auth from './global/$auth';
 app.config.globalProperties.$auth = $auth;
 
 app.config.globalProperties.appName = 'Портал копирайтеров';
+app.config.globalProperties.appURL = 'http://copywriting';
 
 import router from './router';
 app.use(router);

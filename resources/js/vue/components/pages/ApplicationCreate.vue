@@ -3,8 +3,9 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import ApplicationForm from './partials/ApplicationForm.vue';
 
-
+// Роутер.
 const router = useRouter();
+
 const application = reactive({
     cover: null,
     title: '',

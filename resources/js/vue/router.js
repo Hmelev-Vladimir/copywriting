@@ -41,7 +41,7 @@ const routes = [
         meta: { role: 'guest', },
     },
     {
-        path: '/AdminPanel',
+        path: '/admin',
         name: 'AdminPanel',
         component: AdminPanel,
         redirect: { name: 'ApplicationsAdmin' },
@@ -60,7 +60,7 @@ const routes = [
         ],
     },
     {
-        path: '/UserProfile',
+        path: '/user',
         name: 'UserProfile',
         component: UserProfile,
         meta: { role: 'user', },

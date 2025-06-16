@@ -11,7 +11,7 @@ const emit = defineEmits(['deleteUser']);
 <template>
     <article class="application-card">
         <div class="application-card__item">
-            <img class="application-card__cover" :src="`/storage/${user.pic}`" :alt="user.name">
+            <img class="application-card__cover" :src="`${appURL}/storage/${user.pic}`" :alt="user.name">
             <h3 class="application-card__title"> {{ user.login }} </h3>
             <p class="application-card__theme">{{ user.name }}</p>
             <p class="application-card__price">{{ user.surname }}</p>

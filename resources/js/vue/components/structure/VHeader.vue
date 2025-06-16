@@ -68,7 +68,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
                     <li v-if="$auth.user.role !== 'guest'">
                         <span class="header__user-container">
                             <img class="header__user-pic"
-                                :src="`/storage/${$auth.user.pic}`"
+                                :src="`${appURL}/storage/${$auth.user.pic}`"
                                 :alt="$auth.user.name">
                             <span>{{ $auth.user.login }}</span>
                         </span>
@@ -238,8 +238,9 @@ import Logout from '../pages/auth/partials/Logout.vue';
     }
 
     &__user-pic {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: cover;
         border-radius: 50%;
     }
 }

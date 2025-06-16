@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import $auth from '../../../../global/$auth';
+import $auth from '#/$auth';
 
 /**
  * @ref {object} Роутер.

@@ -48,20 +48,6 @@ class ApplicationController extends Controller
     }
 
     public function update(ApplicationUpdateRequest $request) {
-        // $application =  Application::findOrFail($request->id);
-
-        // $disk = Storage::disk('public');
-        // $path = $disk->put('',$request->cover);
-
-        // if ($request->cover !== null) {
-
-        //     if  (
-        //         $application->cover !== 'default-featured-image.jpg' && $disk->exists($application->cover)
-        //      ) {
-        //          $disk->delete($application->cover);
-        //         }
-        //     $path= $disk->put('', $request->cover);
-        // }
         $application = Application::findOrFail($request->id);
 
         // Получение публичного диска.
@@ -96,9 +82,6 @@ class ApplicationController extends Controller
         ], 200);
     }
 
-
-
-
     public function delete(Request $request) {
         $application = Application::findOrFail($request->id);
 
@@ -109,6 +92,6 @@ class ApplicationController extends Controller
             $disk->delete($application->cover);
         }
         $application->delete();
-        return response()->json([ 'msg' => 'Объявление был успешно удалено.'],200);
+        return response()->json(['msg' => 'Объявление был успешно удалено.'],200);
     }
 }

@@ -1,12 +1,16 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import $auth from '#/$auth';
 import ProfilePicForm from './partials/ProfilePicForm.vue';
-import { useRouter } from 'vue-router';
 
+// Роутер.
 const router = useRouter();
 
+/**
+ * Удаляет пользователя.
+ */
 function deleteUser() {
-    if (confirm('Хотите удалить данного пользователя?')) {
+    if (confirm('Хотите удалить свой аккаунт?')) {
         axios.delete('/api/users/delete', { params: { id: $auth.user.id } })
             .then((response) => {
                 console.log(response);
@@ -21,6 +25,7 @@ function deleteUser() {
     }
 };
 </script>
+
 <template>
     <section class="userProfile">
         <div class="userProfile-info">
@@ -40,7 +45,7 @@ function deleteUser() {
             </div>
         </div>
         <div class="userProfile-image">
-            <img class="userProfile-image__cover" :src="`/storage/${$auth.user.pic}`" :alt="$auth.user.name">
+            <img class="userProfile-image__cover" :src="`${appURL}/storage/${$auth.user.pic}`" :alt="$auth.user.name">
 
             <ProfilePicForm class="post-create__form">
             </ProfilePicForm>
@@ -50,6 +55,7 @@ function deleteUser() {
         </div>
     </section>
 </template>
+
 <style lang="scss">
 .userProfile {
     padding-top: 20px;
