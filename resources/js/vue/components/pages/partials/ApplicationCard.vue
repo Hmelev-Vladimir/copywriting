@@ -27,10 +27,10 @@ const emit = defineEmits(['deleteApplication']);
                     :to="{ name: 'ApplicationShow', params: { id: application.id } }">
                     Посмотреть
                 </RouterLink>
-                <RouterLink class="application-card__btn"
+                <!-- <RouterLink class="application-card__btn"
                     :to="{ name: 'ApplicationUpdate', params: { id: application.id } }">
                     Редактировать
-                </RouterLink>
+                </RouterLink> -->
                 <button v-if="$auth.user.role === 'admin'" class="application-card__btn" type="button"
                     @click="emit('deleteApplication', application)">Удалить</button>
             </div>
