@@ -43,7 +43,7 @@ onBeforeMount(() => {
 
 <template>
     <section class="adminApplications">
-        <h1 class="adminApplications__title">Заявки</h1>
+        <h2 class="adminApplications__title">Заявки</h2>
         <div class="adminApplications__container" v-if="!load">
             <ApplicationCard v-for="application in applications" :application="application"
                 @deleteApplication="deleteApplication">
@@ -54,6 +54,7 @@ onBeforeMount(() => {
         </div>
     </section>
 </template>
+
 <style lang="scss">
 .adminApplications {
     @include outerContainer;

@@ -190,7 +190,6 @@ import Logout from '../pages/auth/partials/Logout.vue';
         border-bottom-left-radius: 0.5rem;
         border-bottom-right-radius: 0.5rem;
         font-size: 0.9rem;
-        font-weight: 600;
 
         &:hover,
         &:focus {
@@ -222,7 +221,6 @@ import Logout from '../pages/auth/partials/Logout.vue';
         border-top-left-radius: 0.5rem;
         border-top-right-radius: 0.5rem;
         font-size: 1rem;
-        font-weight: 600;
 
         &:hover,
         &:focus {

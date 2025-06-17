@@ -40,7 +40,7 @@ function deleteUser(user) {
 
 <template>
     <div class="users-admin">
-        <h1 class="users-admin__userName">Профили пользователей</h1>
+        <h2 class="users-admin__userName">Пользователи</h2>
         <div class="users-admin__adminUserContainer" v-if="!load">
             <UserCard v-for="user in users" :user="user" @deleteUser="deleteUser">
             </UserCard>

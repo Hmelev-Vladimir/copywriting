@@ -1,11 +1,11 @@
 <script setup>
-
 const props = defineProps({
     application: {
         type: Object,
         required: true
     }
 });
+
 const emit = defineEmits(['deleteApplication']);
 </script>
 
@@ -40,9 +40,13 @@ const emit = defineEmits(['deleteApplication']);
 </template>
 <style lang="scss">
 .adminApplication-card {
+    @include card;
+    padding: 0.5rem;
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-auto-rows: max-content;
+    grid-auto-flow: row;
+    gap: 1rem;
 
     &__item {
         display: grid;
@@ -59,7 +63,7 @@ const emit = defineEmits(['deleteApplication']);
     }
 
     &__cover {
-        height: 300px;
+        height: 200px;
         width: 100%;
         object-fit: cover;
         object-position: center;

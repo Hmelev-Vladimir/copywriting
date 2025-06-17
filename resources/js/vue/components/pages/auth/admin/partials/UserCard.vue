@@ -1,96 +1,117 @@
 <script setup>
-
+// Входные данные компонента.
 const props = defineProps({
     user: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 });
+
+// Излучатель.
 const emit = defineEmits(['deleteUser']);
 </script>
+
 <template>
-    <article class="application-card">
-        <div class="application-card__item">
-            <img class="application-card__cover" :src="`${appURL}/storage/${user.pic}`" :alt="user.name">
-            <h3 class="application-card__title"> {{ user.login }} </h3>
-            <p class="application-card__theme">{{ user.name }}</p>
-            <p class="application-card__price">{{ user.surname }}</p>
+    <article class="user-card">
+        <div class="user-card__content">
+            <img class="user-card__avatar" :src="`${appURL}/storage/${user.pic}`" :alt="user.name">
+            <div class="user-card__info">
+                <h3 class="user-card__login">{{ user.login }}</h3>
+                <p class="user-card__name">{{ user.name }}</p>
+                <p class="user-card__surname">{{ user.surname }}</p>
+            </div>
         </div>
-        <div class="application-card__btn-container">
-            <RouterLink class="application-card__btn" :to="{ name: 'UserProfileUpdate', params: { id: user.id } }">
+        <div class="user-card__actions">
+            <RouterLink class="user-card__action user-card__btn"
+                       :to="{ name: 'UserProfileUpdate', params: { id: user.id } }">
                 Редактировать
             </RouterLink>
-            <button class="application-card__btn" type="button" @click="emit('deleteUser', user)"
-                v-if="user.id !== $auth.user.id">Удалить</button>
+            <button class="user-card__action user-card__btn"
+                    type="button"
+                    @click="emit('deleteUser', user)"
+                    v-if="user.id !== $auth.user.id">
+                Удалить
+            </button>
         </div>
     </article>
 </template>
+
 <style lang="scss">
-.application-card {
-    display: grid;
-    grid-template-rows: repeat(auto-fit, minmax(50px, 1fr));
-    gap: 30px;
-    // .application-card__item
+.user-card {
+    @include card;
 
-    &__item {
-        height: 100px;
-        display: grid;
-        grid-template-columns:
-            100px minmax(40px, 1fr) minmax(40px, 1fr) minmax(40px, 1fr);
-        grid-auto-flow: column;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 
-        align-content: start;
-        justify-content: center;
-
-        box-shadow: 0px 3px 3px 0px $primary;
-        border-radius: 15px;
-        text-align: center;
+    @include mobile {
+        padding: 0.75rem;
     }
 
-    // .application-card__cover
+    &__content {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 1rem;
+        align-items: center;
 
-    &__cover {
+        @include mobile {
+            grid-template-columns: 80px 1fr;
+            gap: 0.75rem;
+        }
+    }
+
+    &__avatar {
+        width: 100px;
         height: 100px;
         border-radius: 15px;
-        width: 100px;
         object-fit: cover;
         object-position: center;
+
+        @include mobile {
+            width: 80px;
+            height: 80px;
+        }
     }
 
-    // .application-card__title
-
-    &__title {
+    &__info {
         display: grid;
-        align-self: center;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+        align-items: center;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+            gap: 0.25rem;
+        }
     }
 
-    // .application-card__theme
-
-    &__theme {
-        display: grid;
-        align-self: center;
+    &__login {
+        margin: 0;
+        font-size: 1rem;
+        color: $secondary;
+        font-weight: 600;
     }
 
-    // .application-card__price
+    &__name,
+    &__surname {
+        margin: 0;
+        color: $secondary;
+        opacity: 0.8;
+    }
 
-    &__price {
-        display: grid;
-        align-self: center;
+    &__actions {
+        display: flex;
+        gap: 0.5rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid rgba($secondary, 0.1);
+
+        @include mobile {
+            flex-direction: column;
+        }
     }
 
     &__btn {
         @include btn;
-        align-content: center;
-    }
-
-    &__btn-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        padding-left: 10px;
     }
 }
 </style>
