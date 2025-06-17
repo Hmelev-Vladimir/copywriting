@@ -44,8 +44,6 @@ import VFooter from "./structure/VFooter.vue";
     &__main {
         grid-area: main;
         display: grid;
-        grid-auto-rows: max-content;
-        grid-auto-flow: row;
     }
 
     &__footer {
