@@ -95,6 +95,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
     color: $primary;
     background-color: $secondary;
     box-shadow: -3px 0 3px 1px $accent;
+    position: relative;
+    z-index: 50;
 
     @include mobile {
         padding-top: 1rem;
