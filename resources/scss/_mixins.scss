@@ -2,14 +2,14 @@
 
 // Внешний контейнер.
 @mixin outerContainer {
-    margin-left: max(50px, 5%);
-    margin-right: max(50px, 5%);
+    margin-left: max(50px, 10%);
+    margin-right: max(50px, 10%);
 }
 
 // Внутренний контейнер.
 @mixin innerContainer {
-    padding-left: max(50px, 5%);
-    padding-right: max(50px, 5%);
+    padding-left: max(50px, 10%);
+    padding-right: max(50px, 10%);
 }
 
 // Заголовок.

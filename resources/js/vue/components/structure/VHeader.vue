@@ -174,7 +174,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__link-upper {
         position: relative;
         top: -0.25rem;
-        padding: 0.5rem 1rem 0.25rem 1rem;
+        padding: 0.75rem 1rem 0.5rem 1rem;
         color: $primary;
         background-color: $accent;
         border-bottom-left-radius: 0.5rem;
@@ -190,7 +190,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         }
 
         @include mobile {
-            padding: 0.5rem 1rem 0.5rem 1rem;
+            padding: 0.75rem 1rem 0.75rem 1rem;
             top: 0;
             border-radius: 0.5rem;
 

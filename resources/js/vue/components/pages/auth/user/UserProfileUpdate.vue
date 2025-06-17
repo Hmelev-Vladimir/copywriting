@@ -104,17 +104,20 @@ onMounted(() => {
 </script>
 
 <template>
-    <section class="post-create">
-        <h1 class="post-create__title" v-once>
+    <section class="user-profile-update">
+        <h1 class="user-profile-update__title">
             Редактирование профиля
         </h1>
-        <ProfileForm class="post-create__form" :user="user" :errors="errors" @send-form="updateProfile">
+        <ProfileForm class="user-profile-update__form"
+            :user="user"
+            :errors="errors"
+            @send-form="updateProfile">
         </ProfileForm>
     </section>
 </template>
 
 <style lang="scss">
-.post-create {
+.user-profile-update {
     @include outerContainer;
     @include card;
 
