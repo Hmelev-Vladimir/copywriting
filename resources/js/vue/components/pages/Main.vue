@@ -1,13 +1,21 @@
 <template>
     <section class="main__welcome welcome">
-        <div class="welcome__block1">
-            <div class="welcome__logo">
-                <div class="welcome__logoText">
-                    <h2>Множество заявок и копирайтеров готовых их исполнить!</h2>
-                    <p>Найдите копирайтера прямо сейчас!</p>
-                </div>
-                <img src="/images/copywiriting.jpeg" alt="Название проекта">
+        <div class="welcome__logo">
+            <div class="welcome__logoText">
+                <h2 class="welcome__logoTextTitle">
+                    Множество заявок и
+                    <span class="welcome__logoTextAccent">копирайтеров готовых их исполнить!</span>
+                </h2>
+                <p class="welcome__logoTextSubtitle">
+                    Найдите копирайтера прямо сейчас!
+                </p>
             </div>
+            <img class="welcome__logoImg"
+                src="/images/copywiriting.jpeg"
+                :alt="appName">
+        </div>
+
+        <div class="welcome__block1">
             <div class="welcome__head">
                 <div class=" welcome__head__items">
                     <div class="welcome__head__item">
@@ -28,6 +36,7 @@
                 </div>
             </div>
         </div>
+
         <div class="welcome__block2">
             <div class="welcome__main">
                 Заказывайте тексты — система найдет исполнителей и вы получите качественный
@@ -51,16 +60,59 @@
     gap: 1rem;
 
     &__logo {
-        margin-top: 40px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-flow: column;
-        justify-self: center;
+        @include negativeOuterContainer;
+        @include innerContainer;
 
-        & img {
-            height: 200px;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+        display: grid;
+        grid-template-columns: 1fr max-content;
+        gap: 1rem;
+        background-color: $accent;
+        color: $primary;
+
+        @include mobile {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, max-content);
+            justify-items: center;
         }
-        padding-bottom: 60px;
+    }
+
+    &__logoText {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+
+        @include mobile {
+            justify-items: center;
+        }
+    }
+
+    &__logoTextAccent {
+        color: $secondary;
+        text-shadow: 1px 1px 3px $primary;
+    }
+
+    &__logoTextTitle {
+        font-size: 2.5rem;
+        text-shadow: 1px 1px 3px $secondary;
+        text-align: left;
+
+        @include mobile {
+            text-align: center;
+        }
+    }
+
+    &__logoTextSubtitle {
+        font-size: 1.5rem;
+        color: darken($primary, 10);
+    }
+
+    &__logoImg {
+        height: 400px;
+        width: auto;
+        object-fit: contain;
+        border-radius: 0.5rem;
     }
 
     &__head {

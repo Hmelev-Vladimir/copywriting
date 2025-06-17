@@ -6,6 +6,12 @@
     margin-right: max(50px, 10%);
 }
 
+// Негативный внешний контейнер.
+@mixin negativeOuterContainer {
+    margin-left: calc(-1 * max(50px, 10vw));
+    margin-right: calc(-1 * max(50px, 10vw));
+}
+
 // Внутренний контейнер.
 @mixin innerContainer {
     padding-left: max(50px, 10%);
@@ -70,7 +76,7 @@
 
 // Экран мобильного устройства.
 @mixin mobile {
-    @media screen and (max-width: 800px) {
+    @media screen and (max-width: 1000px) {
         @content;
     }
 }
