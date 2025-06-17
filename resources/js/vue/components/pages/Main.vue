@@ -2,7 +2,15 @@
     <section class="main__welcome welcome">
         <div class="welcome__block1">
             <div class="welcome__logo">
-                <img src="/images/logo5.png" alt="Название проекта">
+                <img src="/images/copywiriting.jpeg" alt="Название проекта">
+                <div class="welcome__statistics__text">
+                    <ul class="welcome__statistics__text__items">
+                        <li class="welcome__statistics__text__item">Тексты для лендингов</li>
+                        <li class="welcome__statistics__text__item">Копирайтинг и рерайтинг</li>
+                        <li class="welcome__statistics__text__item">Инфостатьи и новости</li>
+                        <li class="welcome__statistics__text__item">SEO-тексты для сайтов</li>
+                    </ul>
+                </div>
             </div>
             <div class="welcome__head">
                 <div class=" welcome__head__items">
@@ -33,14 +41,6 @@
                 <div class="welcome__statistics__image">
                     <img src="/images/chart.png" alt="Название проекта">
                 </div>
-                <!-- <div class="welcome__statistics__text">
-                    <ul class="welcome__statistics__text__items">
-                        <li class="welcome__statistics__text__item">Тексты для лендингов</li>
-                        <li class="welcome__statistics__text__item">Копирайтинг и рерайтинг</li>
-                        <li class="welcome__statistics__text__item">Инфостатьи и новости</li>
-                        <li class="welcome__statistics__text__item">SEO-тексты для сайтов</li>
-                    </ul>
-                </div> -->
             </div>
         </div>
     </section>
