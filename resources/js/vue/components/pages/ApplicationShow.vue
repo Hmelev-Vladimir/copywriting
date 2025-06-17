@@ -59,7 +59,7 @@ onBeforeMount(() => {
             Заявки
         </RouterLink>
         <span>➤</span>
-        <span v-once>{{ application.title }}</span>
+        <span>{{ application.title }}</span>
     </div>
 
     <div class="applicationShow">
