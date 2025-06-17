@@ -106,6 +106,13 @@ onBeforeMount(() => {
     margin-top: 1rem;
     margin-bottom: 1rem;
     gap: 0.6rem;
+    @include mobile {
+        grid-template-areas:
+            'cover'
+            'content';
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2,max-content);
+    }
 
     // .applicationShow__cover
 
@@ -184,13 +191,14 @@ onBeforeMount(() => {
         display: grid;
         grid-template-columns: auto;
         grid-auto-flow: column;
-        text-align: center;
         gap: 2rem;
 
         @include mobile {
             grid-template-columns: 1fr;
             grid-auto-flow: row;
             gap: 0.5rem;
+            justify-items: center;
+            justify-self: center;
         }
     }
 
