@@ -8,6 +8,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['deleteUser']);
 </script>
+
 <template>
     <article class="application-card">
         <div class="application-card__item">
@@ -25,6 +26,7 @@ const emit = defineEmits(['deleteUser']);
         </div>
     </article>
 </template>
+
 <style lang="scss">
 .application-card {
     display: grid;
