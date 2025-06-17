@@ -1,17 +1,22 @@
 <script setup>
+// Входные данные компонента.
 const props = defineProps({
     application: {
         type: Object,
-        required: true
+        required: true,
     },
     errors: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 });
 
+// Излучатель.
 const emit = defineEmits(['send-form']);
 
+/**
+ * Управляет получением изображения из поля ввода.
+ */
 function uploadImg(event) {
     console.log(event);
     if (event.target.files[0] instanceof File) {
@@ -23,8 +28,8 @@ function uploadImg(event) {
 </script>
 
 <template>
-
     <form class="form" @submit.prevent="emit('send-form')">
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.cover !== null
@@ -33,6 +38,7 @@ function uploadImg(event) {
                 type="file" accept="image/*" @change="uploadImg">
             <div class="form__error" v-if="errors.cover !== null">{{ errors.cover }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.title !== null
@@ -41,6 +47,7 @@ function uploadImg(event) {
                 type="text" v-model="application.title">
             <div class="form__error" v-if="errors.title !== null">{{ errors.title }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.theme !== null
@@ -49,6 +56,7 @@ function uploadImg(event) {
                 type="text" v-model="application.theme"></textarea>
             <div class="form__error" v-if="errors.theme !== null">{{ errors.theme }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.price !== null
@@ -57,6 +65,7 @@ function uploadImg(event) {
                 type="number" v-model="application.price">
             <div class="form__error" v-if="errors.price !== null">{{ errors.price }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.description !== null
@@ -65,6 +74,7 @@ function uploadImg(event) {
                 id="description" type="text" v-model="application.description"></textarea>
             <div class="form__error" v-if="errors.description !== null">{{ errors.description }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.publicationDate !== null
@@ -74,6 +84,8 @@ function uploadImg(event) {
                 step="1">
             <div class="form__error" v-if="errors.publicationDate !== null">{{ errors.publicationDate }}</div>
         </div>
+
         <button class="form__btn" type="submit">Сохранить</button>
+
     </form>
 </template>

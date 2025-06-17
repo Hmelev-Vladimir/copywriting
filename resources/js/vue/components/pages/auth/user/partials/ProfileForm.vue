@@ -1,19 +1,22 @@
 <script setup>
-
-
+// Входные данные компонента.
 const props = defineProps({
     user: {
         type: Object,
-        required: true
+        required: true,
     },
     errors: {
         type: Object,
-        required: true
-    }
+        required: true,
+    },
 });
 
+// Излучатель.
 const emit = defineEmits(['send-form']);
 
+/**
+ * Управляет получением изображения из поля ввода.
+ */
 function uploadImg(event) {
     console.log(event);
     if (event.target.files[0] instanceof File) {
@@ -27,6 +30,7 @@ function uploadImg(event) {
 <template>
 
     <form class="register__form form" @submit.prevent="emit('send-form')">
+
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.pic !== null
@@ -35,6 +39,7 @@ function uploadImg(event) {
                 type="file" accept="image/*" @change="uploadImg">
             <div class="form__error" v-if="errors.pic !== null">{{ errors.pic }}</div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.surname !== null }"
                 for="surname">Фамилия</label>
@@ -44,6 +49,7 @@ function uploadImg(event) {
                 {{ errors.surname }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.name !== null }" for="name">Имя</label>
             <input class="form__input" :class="{ 'form__input_error': errors.name !== null }" type="text" name="name"
@@ -52,6 +58,7 @@ function uploadImg(event) {
                 {{ errors.name }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.email !== null }" for="email">Email</label>
             <input class="form__input" :class="{ 'form__input_error': errors.email !== null }" type="email" name="email"
@@ -60,6 +67,7 @@ function uploadImg(event) {
                 {{ errors.email }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.phone !== null }" for="phone">Номер
                 телефона</label>
@@ -69,6 +77,7 @@ function uploadImg(event) {
                 {{ errors.phone }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.login !== null }" for="login">Логин</label>
             <input class="form__input" :class="{ 'form__input_error': errors.login !== null }" type="text" name="login"
@@ -77,6 +86,7 @@ function uploadImg(event) {
                 {{ errors.login }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" :class="{ 'form__label_error': errors.password !== null }"
                 for="password">Пароль</label>
@@ -86,13 +96,16 @@ function uploadImg(event) {
                 {{ errors.password }}
             </div>
         </div>
+
         <div class="form__row">
             <label class="form__label" for="password_confirmation">Подтверждение пароля</label>
             <input class="form__input" type="password" name="password_confirmation" id="password_confirmation"
                 placeholder="Подтвердите пароль" v-model="user.password_confirmation">
         </div>
+
         <button class="form__btn" type="submit">
             Изменить профиль
         </button>
+
     </form>
 </template>

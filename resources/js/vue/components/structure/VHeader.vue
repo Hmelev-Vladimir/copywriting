@@ -48,7 +48,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
                     <template v-if="$auth.user.role === 'user'">
                         <li>
                             <RouterLink class="header__link-lower" :to="{ name: 'Applications' }">
-                                Объявления
+                                Заявки
                             </RouterLink>
                         </li>
                         <li>
@@ -65,6 +65,8 @@ import Logout from '../pages/auth/partials/Logout.vue';
                             </RouterLink>
                         </li>
                     </template>
+                </ul>
+                <ul class="header__list-lower header__list-lower_end">
                     <li v-if="$auth.user.role !== 'guest'">
                         <span class="header__user-container">
                             <img class="header__user-pic"
@@ -138,9 +140,11 @@ import Logout from '../pages/auth/partials/Logout.vue';
     &__nav-lower {
         grid-area: nav-lower;
         display: grid;
-        justify-content: start;
+        grid-template-columns: 1fr max-content;
+        justify-content: space-between;
 
         @include mobile {
+            grid-template-columns: 1fr;
             justify-content: center;
         }
     }
@@ -157,6 +161,10 @@ import Logout from '../pages/auth/partials/Logout.vue';
 
         @include mobile {
             flex-direction: column;
+        }
+
+        &_end {
+            justify-content: end;
         }
     }
 

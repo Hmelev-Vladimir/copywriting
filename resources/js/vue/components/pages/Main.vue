@@ -45,16 +45,17 @@
 </template>
 <style lang="scss">
 .welcome {
+    @include outerContainer;
+
     display: grid;
     grid-template-rows: auto;
     grid-auto-flow: row;
-
+    gap: 1rem;
 
     &__logo {
         display: grid;
         justify-self: center;
     }
-
 
     &__head {
 

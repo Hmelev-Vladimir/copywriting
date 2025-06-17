@@ -30,7 +30,7 @@ function deleteUser() {
         <div class="profile__header">
             <h1 class="profile__title">Профиль</h1>
             <RouterLink class="profile__button" :to="{ name: 'ApplicationCreate' }">
-                Создать объявление
+                Создать заявку
             </RouterLink>
         </div>
 
@@ -40,7 +40,7 @@ function deleteUser() {
                     <img class="profile__avatar"
                         :src="`${appURL}/storage/${$auth.user.pic}`" :alt="$auth.user.name">
                 </div>
-                <ProfilePicForm class="profile__form" />
+                <ProfilePicForm class="profile__form"></ProfilePicForm>
             </div>
 
             <div class="profile__info-section">

@@ -6,6 +6,7 @@ import ApplicationForm from './partials/ApplicationForm.vue';
 // Роутер.
 const router = useRouter();
 
+// Заявка.
 const application = reactive({
     cover: null,
     title: '',
@@ -16,6 +17,8 @@ const application = reactive({
     reason: '',
     publicationDate: '',
 });
+
+// Ошибки.
 const errors = reactive({
     cover: null,
     title: null,
@@ -27,6 +30,9 @@ const errors = reactive({
     publicationDate: null,
 });
 
+/**
+ * Создает заявку.
+ */
 function createApplication() {
     const formData = new FormData();
     formData.append('cover', application.cover);
@@ -58,18 +64,28 @@ function createApplication() {
 </script>
 
 <template>
-    <section class="post-create">
-        <h1 class="post-create__title">Новое объявление</h1>
-        <ApplicationForm class="post-create__form" :application="application" :errors="errors"
+    <div class="breadcrumbs">
+        <RouterLink
+            :to="{ name: 'Applications'}">
+            Заявки
+        </RouterLink>
+        <span>➤</span>
+        <span>Создание заявки</span>
+    </div>
+
+    <section class="application-create">
+        <h1 class="application-create__title">Создание заявки</h1>
+        <ApplicationForm class="application-create__form" :application="application" :errors="errors"
             @send-form="createApplication">
         </ApplicationForm>
     </section>
-
 </template>
 
 <style lang="scss">
-.post-create {
+.application-create {
     @include outerContainer;
+    @include card;
+
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: grid;
@@ -80,8 +96,8 @@ function createApplication() {
     gap: 1rem;
 
     &__title {
-        grid-area: title;
         @include title;
+        grid-area: title;
     }
 
     &__form {

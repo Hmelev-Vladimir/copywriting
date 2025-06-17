@@ -2,6 +2,7 @@
 import { reactive, computed, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 
+// Входные данные компонента.
 const props = defineProps({
     id: {
         type: [String, Number],
@@ -12,6 +13,7 @@ const props = defineProps({
 // Роутер.
 const router = useRouter();
 
+// Заявка.
 const application = reactive({
     id: -1,
     cover: '',
@@ -27,6 +29,9 @@ const application = reactive({
     user: { surname: '' },
 });
 
+/**
+ * Получает заявку.
+ */
 function getApplication() {
     axios.get('/api/applications/getApplication', { params: { id: props.id } })
         .then((response) => {
@@ -45,7 +50,6 @@ function getApplication() {
 onBeforeMount(() => {
     getApplication();
 });
-
 </script>
 
 <template>
@@ -72,16 +76,18 @@ onBeforeMount(() => {
         </div>
     </div>
 </template>
+
 <style lang="scss">
 .applicationShow {
+    @include outerContainer;
+    @include card;
+
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-areas: 'cover content';
-    @include outerContainer;
     margin-top: 1rem;
     margin-bottom: 1rem;
     gap: 0.6rem;
-    color: $secondary;
 
     // .applicationShow__cover
 

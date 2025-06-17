@@ -1,0 +1,32 @@
+@use 'vars';
+@use 'mixins';
+
+.breadcrumbs {
+    @include mixins.innerContainer;
+
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    border-top: 1px solid vars.$secondary;
+    border-bottom: 1px solid vars.$secondary;
+    box-shadow: 0px 1px 3px 0px vars.$secondary;
+    background-color: darken(vars.$primary, 5);
+
+    a {
+        text-decoration: none;
+        color: vars.$accent;
+        font-size: inherit;
+        font-weight: 600;
+        font-family: inherit;
+        transition: all 0.2s ease-in-out;
+
+        &:hover,
+        &:focus {
+            color: lighten(vars.$accent, 10);
+        }
+    }
+}

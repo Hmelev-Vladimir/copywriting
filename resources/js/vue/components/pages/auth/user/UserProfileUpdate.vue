@@ -104,6 +104,15 @@ onMounted(() => {
 </script>
 
 <template>
+    <div class="breadcrumbs">
+        <RouterLink
+            :to="{ name: 'UserProfile' }">
+            Профиль
+        </RouterLink>
+        <span>➤</span>
+        <span>Редактирование профиля</span>
+    </div>
+
     <section class="user-profile-update">
         <h1 class="user-profile-update__title">
             Редактирование профиля
@@ -131,8 +140,8 @@ onMounted(() => {
     gap: 1rem;
 
     &__title {
-        grid-area: title;
         @include title;
+        grid-area: title;
     }
 
     &__form {

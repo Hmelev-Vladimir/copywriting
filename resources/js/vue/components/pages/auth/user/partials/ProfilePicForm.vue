@@ -17,8 +17,7 @@ const errors = reactive({
 });
 
 /**
- * Загружает фото.
- * @param event {Event} Событие.
+ * Управляет получением изображения из поля ввода.
  */
 function uploadImg(event) {
     load.value = true;
