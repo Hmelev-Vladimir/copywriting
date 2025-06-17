@@ -106,8 +106,14 @@ onMounted(() => {
 <template>
     <div class="breadcrumbs">
         <RouterLink
+            v-if="$auth.user.role === 'user'"
             :to="{ name: 'UserProfile' }">
             Профиль
+        </RouterLink>
+        <RouterLink
+            v-else-if="$auth.user.role === 'admin'"
+            :to="{ name: 'UsersAdmin' }">
+            Пользователи
         </RouterLink>
         <span>➤</span>
         <span>Редактирование профиля</span>

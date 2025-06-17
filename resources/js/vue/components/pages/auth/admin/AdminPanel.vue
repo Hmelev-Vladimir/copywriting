@@ -63,7 +63,7 @@
 
     &__sidebar {
         grid-area: sidebar;
-        background: $secondary;
+        background: lighten($secondary, 5);
         color: $primary;
         display: flex;
         flex-direction: column;
