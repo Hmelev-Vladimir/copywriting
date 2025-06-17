@@ -3,10 +3,15 @@ import { onBeforeMount, reactive, ref } from 'vue';
 import ApplicationCard from './partials/ApplicationCard.vue';
 import axios from 'axios';
 
-
+// Заявки.
 const applications = reactive([]);
+
+// Индикатор загрузки.
 const load = ref(true);
 
+/**
+ * Получает список заявок.
+ */
 function getList() {
     axios.get('/api/applications/getList', { params: {} })
         .then((response) => {
@@ -20,9 +25,11 @@ function getList() {
         .finally(() => { load.value = false; });
 };
 
-
+/**
+ * Удаляет заявку.
+ */
 function deleteApplication(application) {
-    if (confirm('Хотите удалить данное объявление?')) {
+    if (confirm('Хотите удалить данную заявку?')) {
         axios.delete('/api/applications/delete', { params: { id: application.id } })
             .then((response) => {
                 console.log(response);
@@ -42,22 +49,27 @@ onBeforeMount(() => {
 </script>
 
 <template>
-    <section class="posts">
-        <h1 class="posts__title">Обьявления</h1>
-        <RouterLink class="posts__btn" :to="{ name: 'ApplicationCreate' }">Новое объявление</RouterLink>
-        <div class="posts__container" v-if="!load">
+    <section class="applications">
+        <h1 class="applications__title">Заявки</h1>
+        <RouterLink class="applications__btn"
+            :to="{ name: 'ApplicationCreate' }">
+            Создать заявку
+        </RouterLink>
+        <div class="applications__container" v-if="!load">
             <ApplicationCard v-for="application in applications" :application="application"
                 @deleteApplication="deleteApplication">
             </ApplicationCard>
         </div>
-        <div class="posts__container posts__container_load" v-else>
+        <div class="applications__container applications__container_load" v-else>
             <Load></Load>
         </div>
     </section>
 </template>
+
 <style lang="scss">
-.posts {
+.applications {
     @include outerContainer;
+
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: grid;
@@ -67,20 +79,21 @@ onBeforeMount(() => {
         'title btn'
         'container container';
     ;
-    // .posts__title
+    align-items: center;
+    gap: 1rem;
+    // .applications__title
 
     &__title {
+        @include title;
         grid-area: title;
-        @include title
+        justify-self: start;
     }
 
-    // .posts__container
+    // .applications__container
     &__btn {
-        grid-area: btn;
         @include btn;
-        margin-bottom: 10px;
-        font-size: 15pt;
-        text-align: center;
+        grid-area: btn;
+        justify-self: end;
     }
 
     &__container {
