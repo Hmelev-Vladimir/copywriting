@@ -66,7 +66,7 @@
         padding-top: 3rem;
         padding-bottom: 3rem;
         display: grid;
-        grid-template-columns: 1fr max-content;
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
         background-color: $accent;
         color: $primary;
@@ -113,6 +113,11 @@
         width: auto;
         object-fit: contain;
         border-radius: 0.5rem;
+        justify-self: end;
+
+        @include mobile {
+            justify-self: center;
+        }
     }
 
     &__head {
@@ -123,7 +128,7 @@
             grid-auto-flow: column;
             align-items: center;
             gap: 30px;
-            justify-content: space-evenly;
+            justify-content: center;
 
             @include mobile {
                 grid-auto-flow: row;
@@ -141,10 +146,11 @@
             justify-self: center;
             align-items: center;
             font-size: 16pt;
+            max-width: max-content;
 
             &__image {
                 display: grid;
-                justify-self: end;
+                justify-self: start;
 
 
                 & img {
