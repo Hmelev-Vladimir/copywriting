@@ -60,7 +60,7 @@ onBeforeMount(() => {
             <p class="applicationShow__theme">Тема: {{ application.theme }}</p>
             <p class="applicationShow__price">{{ application.price }} РУБ</p>
             <p class="applicationShow__price">Автор: {{ application.user.surname }}</p>
-            <p class="applicationShow__description">Описание:{{ application.description }}</p>
+            <p class="applicationShow__description"><b>Описание:</b> {{ application.description }}</p>
             <p class="applicationShow__status"> Статус объявления: {{ application.status }} </p>
             <div class="applicationShow__dateCont">
                 <div class="applicationShow__publicationDate">Опубликовано в: {{ new
@@ -116,9 +116,7 @@ onBeforeMount(() => {
         font-size: 1.5rem;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        @include innerContainer;
+
     }
 
     &__title {
