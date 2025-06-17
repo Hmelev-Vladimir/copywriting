@@ -72,14 +72,23 @@ onBeforeMount(() => {
             <p class="applicationShow__description"><b>Описание:</b> {{ application.description }}</p>
             <p class="applicationShow__status"> Статус объявления: {{ application.status }} </p>
             <div class="applicationShow__dateCont">
-                <div class="applicationShow__publicationDate">Опубликовано в: {{ new
-                    Date(application.publicationDate).toLocaleString() }}
+                <div class="applicationShow__date">
+                    <span>Опубликовано</span>
+                    <span>
+                    {{ new Date(application.publicationDate).toLocaleString() }}
+                    </span>
                 </div>
-                <div class="applicationShow__created-at">Созданно в: {{ new
-                    Date(application.created_at).toLocaleString() }}
+                <div class="applicationShow__date">
+                    <span>Создано</span>
+                    <span>
+                    {{ new Date(application.created_at).toLocaleString() }}
+                    </span>
                 </div>
-                <div class="applicationShow__updated-at">Изменнено в {{ new
-                    Date(application.updated_at).toLocaleString() }}
+                <div class="applicationShow__date">
+                    <span>Изменено</span>
+                    <span>
+                    {{ new Date(application.updated_at).toLocaleString() }}
+                    </span>
                 </div>
             </div>
         </div>
@@ -151,7 +160,6 @@ onBeforeMount(() => {
     // .applicationShow__price
 
     &__price {
-        padding-top: 50px;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
         font-size: 1.5rem;
@@ -179,28 +187,28 @@ onBeforeMount(() => {
         text-align: center;
         gap: 2rem;
 
+        @include mobile {
+            grid-template-columns: 1fr;
+            grid-auto-flow: row;
+            gap: 0.5rem;
+        }
     }
 
     // .applicationShow__created-at
-    &__publicationDate {
-        padding-top: 30px;
-
+    &__date {
+        padding: 1rem;
         box-shadow: 0px 3px 3px 0px $primary;
         border-radius: 15px;
-    }
+        display: grid;
+        grid-auto-rows: max-content;
+        grid-auto-flow: row;
+        gap: 1rem;
+        justify-items: center;
+        border: 1px solid $secondary;
 
-    &__created-at {
-        padding-top: 30px;
-        box-shadow: 0px 3px 3px 0px $primary;
-        border-radius: 15px;
-    }
-
-    // .applicationShow__updated-at
-
-    &__updated-at {
-        padding-top: 30px;
-        box-shadow: 0px 3px 3px 0px $primary;
-        border-radius: 15px;
+        span:first-child{
+            font-weight: bold;
+        }
     }
 }
 </style>
