@@ -8,7 +8,7 @@ import Logout from '../pages/auth/partials/Logout.vue';
         <RouterLink class="header__logo-link"
             :to="{ name: 'Main' }"
             :title="appName">
-            <img class="header__logo" src="/images/logo.png" :alt="appName">
+            <img class="header__logo" src="/images/logo3.png" :alt="appName">
         </RouterLink>
         <!-- Навигационные панели -->
         <div class="header__navbars">

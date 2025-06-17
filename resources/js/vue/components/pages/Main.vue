@@ -1,7 +1,7 @@
 <template>
     <section class="main__welcome welcome">
         <div class="welcome__block1">
-            <div class="welcome__logo"> <img src="/images/logo.png" alt="Название проекта"></div>
+            <div class="welcome__logo"> <img src="/images/logo5.png" alt="Название проекта"></div>
             <div class="welcome__head">
                 <div class=" welcome__head__items">
                     <div class="welcome__head__item">
@@ -55,6 +55,9 @@
     &__logo {
         display: grid;
         justify-self: center;
+        & img {
+            height: 200px;
+        }
     }
 
     &__head {
