@@ -4,7 +4,7 @@
             <div class="welcome__logoText">
                 <h2 class="welcome__logoTextTitle">
                     Множество заявок и
-                    <span class="welcome__logoTextAccent">копирайтеров готовых их исполнить!</span>
+                    <span class="welcome__logoTextAccent">копирайтеров, готовых их исполнить!</span>
                 </h2>
                 <p class="welcome__logoTextSubtitle">
                     Найдите копирайтера прямо сейчас!
