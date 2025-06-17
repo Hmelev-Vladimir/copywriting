@@ -2,15 +2,11 @@
     <section class="main__welcome welcome">
         <div class="welcome__block1">
             <div class="welcome__logo">
-                <img src="/images/copywiriting.jpeg" alt="Название проекта">
-                <div class="welcome__statistics__text">
-                    <ul class="welcome__statistics__text__items">
-                        <li class="welcome__statistics__text__item">Тексты для лендингов</li>
-                        <li class="welcome__statistics__text__item">Копирайтинг и рерайтинг</li>
-                        <li class="welcome__statistics__text__item">Инфостатьи и новости</li>
-                        <li class="welcome__statistics__text__item">SEO-тексты для сайтов</li>
-                    </ul>
+                <div class="welcome__logoText">
+                    <h2>Множество заявок и копирайтеров готовых их исполнить!</h2>
+                    <p>Найдите копирайтера прямо сейчас!</p>
                 </div>
+                <img src="/images/copywiriting.jpeg" alt="Название проекта">
             </div>
             <div class="welcome__head">
                 <div class=" welcome__head__items">
@@ -57,10 +53,14 @@
     &__logo {
         margin-top: 40px;
         display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-flow: column;
         justify-self: center;
+
         & img {
             height: 200px;
         }
+        padding-bottom: 60px;
     }
 
     &__head {
@@ -143,6 +143,10 @@
 
             }
         }
+    }
+    .welcome__logoText {
+        display: grid;
+        padding-top: 20px;
     }
 }
 </style>
