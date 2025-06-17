@@ -37,7 +37,7 @@ function deleteApplication(application) {
                 applications.splice(index, 1);
             }).catch((error) => {
                 console.log(error.response);
-                alert('Ошибка! Объявления с подобным id нет');
+                alert('Ошибка! Заявки с подобным id не существует.');
             });
 
     }

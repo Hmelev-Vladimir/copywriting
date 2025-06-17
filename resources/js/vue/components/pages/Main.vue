@@ -66,19 +66,22 @@
             align-items: center;
             gap: 30px;
             justify-content: space-evenly;
-            @media screen and (max-width: 800px) {
+
+            @include mobile {
                 grid-auto-flow: row;
                 place-items: center;
             }
-
         }
 
         &__item {
+            @include card;
+
             display: grid;
             column-gap: 50px;
             grid-template-columns: 1fr 1fr;
             grid-auto-flow: column;
             justify-self: center;
+            align-items: center;
             font-size: 16pt;
 
             &__image {
@@ -92,7 +95,6 @@
             }
 
             &__title {
-                padding-top: 50px;
                 display: grid;
                 text-align: center;
                 justify-self: center;

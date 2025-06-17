@@ -4,14 +4,18 @@ import { useRouter } from 'vue-router';
 import ApplicationForm from './partials/ApplicationForm.vue';
 import $auth from '#/$auth';
 
+// Входные данные компонента.
 const props = defineProps({
     id: {
         type: [String, Number],
         default: 0
-    }
+    },
 });
 
+// Роутер.
 const router = useRouter();
+
+// Заявка.
 const application = reactive({
     id: -1,
     cover: null,
@@ -23,6 +27,8 @@ const application = reactive({
     reason: '',
     publicationDate: '',
 });
+
+// Ошибки.
 const errors = reactive({
     cover: null,
     title: null,
@@ -33,6 +39,10 @@ const errors = reactive({
     reason: null,
     publicationDate: null,
 });
+
+/**
+ * Получает заявку.
+ */
 function getApplication() {
     axios.get('/api/applications/getApplication', { params: { id: props.id } })
         .then((response) => {
@@ -60,6 +70,10 @@ function getApplication() {
             }
         });
 }
+
+/**
+ * Обновляет заявку.
+ */
 function updateApplication() {
     const formData = new FormData();
     formData.append('id', application.id);
@@ -108,20 +122,29 @@ onBeforeMount(() => {
 });
 </script>
 
-
 <template>
-    <section class="post-create">
-        <h1 class="post-create__title" v-once>{{ application.title }}</h1>
-        <ApplicationForm class="post-create__form" :application="application" :errors="errors"
+    <div class="breadcrumbs">
+        <RouterLink
+            :to="{ name: 'Applications'}">
+            Заявки
+        </RouterLink>
+        <span>➤</span>
+        <span>Редактирование заявки</span>
+    </div>
+
+    <section class="application-update">
+        <h1 class="application-update__title">Редактирование заявки</h1>
+        <ApplicationForm class="application-update__form" :application="application" :errors="errors"
             @send-form="updateApplication">
         </ApplicationForm>
     </section>
-
 </template>
 
 <style lang="scss">
-.post-create {
+.application-update {
     @include outerContainer;
+    @include card;
+
     margin-top: 1rem;
     margin-bottom: 1rem;
     display: grid;

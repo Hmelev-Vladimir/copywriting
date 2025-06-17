@@ -92,6 +92,6 @@ class ApplicationController extends Controller
             $disk->delete($application->cover);
         }
         $application->delete();
-        return response()->json(['msg' => 'Объявление был успешно удалено.'],200);
+        return response()->json(['msg' => 'Заявка была успешно удалена.'],200);
     }
 }

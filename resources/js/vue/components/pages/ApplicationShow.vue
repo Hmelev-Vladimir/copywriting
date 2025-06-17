@@ -66,28 +66,28 @@ onBeforeMount(() => {
         <img class="applicationShow__cover" :src="`${appURL}/storage/${application.cover}`" :alt="application.title">
         <div class="applicationShow__item">
             <h1 class="applicationShow__title"> {{ application.title }} </h1>
-            <p class="applicationShow__theme">Тема: {{ application.theme }}</p>
+            <p class="applicationShow__theme"><b>Тема:</b> {{ application.theme }}</p>
             <p class="applicationShow__price">{{ application.price }} РУБ</p>
-            <p class="applicationShow__price">Автор: {{ application.user.surname }}</p>
+            <p class="applicationShow__price"><b>Автор:</b> {{ application.user.surname }}</p>
             <p class="applicationShow__description"><b>Описание:</b> {{ application.description }}</p>
-            <p class="applicationShow__status"> Статус объявления: {{ application.status }} </p>
+            <p class="applicationShow__status"><b>Статус:</b> {{ application.status }} </p>
             <div class="applicationShow__dateCont">
                 <div class="applicationShow__date">
                     <span>Опубликовано</span>
                     <span>
-                    {{ new Date(application.publicationDate).toLocaleString() }}
+                        {{ new Date(application.publicationDate).toLocaleString() }}
                     </span>
                 </div>
                 <div class="applicationShow__date">
                     <span>Создано</span>
                     <span>
-                    {{ new Date(application.created_at).toLocaleString() }}
+                        {{ new Date(application.created_at).toLocaleString() }}
                     </span>
                 </div>
                 <div class="applicationShow__date">
                     <span>Изменено</span>
                     <span>
-                    {{ new Date(application.updated_at).toLocaleString() }}
+                        {{ new Date(application.updated_at).toLocaleString() }}
                     </span>
                 </div>
             </div>
@@ -197,8 +197,6 @@ onBeforeMount(() => {
             grid-template-columns: 1fr;
             grid-auto-flow: row;
             gap: 0.5rem;
-            justify-items: center;
-            justify-self: center;
         }
     }
 

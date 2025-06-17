@@ -32,6 +32,6 @@ class AllUsersController extends Controller
             $disk->delete($user->pic);
         }
         $user->forceDelete();
-        return response()->json([ 'msg' => 'Объявление был успешно удалено.'],200);
+        return response()->json([ 'msg' => 'Заявка была успешно удалена.'],200);
     }
 }

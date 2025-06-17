@@ -22,7 +22,7 @@ function getList() {
 
 
 function deleteApplication(application) {
-    if (confirm('Хотите удалить данное объявление?')) {
+    if (confirm('Хотите удалить данную заявку?')) {
         axios.delete('/api/applications/delete', { params: { id: application.id } })
             .then((response) => {
                 console.log(response);
@@ -30,7 +30,7 @@ function deleteApplication(application) {
                 applications.splice(index, 1);
             }).catch((error) => {
                 console.log(error.response);
-                alert('Ошибка! Объявления с подобным id нет');
+                alert('Ошибка! Заявки с подобным id не существует.');
             });
 
     }
@@ -43,7 +43,7 @@ onBeforeMount(() => {
 
 <template>
     <section class="adminApplications">
-        <h1 class="adminApplications__title">Объявления</h1>
+        <h1 class="adminApplications__title">Заявки</h1>
         <div class="adminApplications__container" v-if="!load">
             <ApplicationCard v-for="application in applications" :application="application"
                 @deleteApplication="deleteApplication">

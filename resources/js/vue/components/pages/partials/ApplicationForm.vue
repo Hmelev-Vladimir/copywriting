@@ -51,7 +51,7 @@ function uploadImg(event) {
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.theme !== null
-            }" for="theme">Тема объявления</label>
+            }" for="theme">Тема</label>
             <textarea class="form__input" :class="{ form__input_error: errors.theme != null }" name="theme" id="theme"
                 type="text" v-model="application.theme"></textarea>
             <div class="form__error" v-if="errors.theme !== null">{{ errors.theme }}</div>
@@ -69,7 +69,7 @@ function uploadImg(event) {
         <div class="form__row">
             <label class="form__label" :class="{
                 form__label_error: errors.description !== null
-            }" for="description">Описание объявления</label>
+            }" for="description">Описание</label>
             <textarea class="form__input" :class="{ form__input_error: errors.description != null }" name="description"
                 id="description" type="text" v-model="application.description"></textarea>
             <div class="form__error" v-if="errors.description !== null">{{ errors.description }}</div>
