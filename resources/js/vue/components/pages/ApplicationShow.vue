@@ -53,6 +53,15 @@ onBeforeMount(() => {
 </script>
 
 <template>
+    <div class="breadcrumbs">
+        <RouterLink
+            :to="{ name: 'Applications'}">
+            Заявки
+        </RouterLink>
+        <span>➤</span>
+        <span v-once>{{ application.title }}</span>
+    </div>
+
     <div class="applicationShow">
         <img class="applicationShow__cover" :src="`${appURL}/storage/${application.cover}`" :alt="application.title">
         <div class="applicationShow__item">
