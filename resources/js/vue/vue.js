@@ -17,6 +17,9 @@ app.component('App', App);
 import Load from './components/global/Load.vue';
 app.component('Load', Load);
 
+import Alert from './components/global/Alert.vue';
+app.component('Alert', Alert);
+
 app.mount('#app');
 
 export default app;

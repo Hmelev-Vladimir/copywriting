@@ -38,6 +38,7 @@ class ApplicationCreateRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'theme' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:50000'],
+            'text' => ['nullable', 'string', 'max:50000'],
             'price' => ['required', 'integer', 'min:0', 'max:2000000000'],
             'publicationDate' => ['required', 'date'],
         ];
@@ -65,6 +66,9 @@ class ApplicationCreateRequest extends FormRequest
             'description.required' => '«Описание» — обязательное поле.',
             'description.string' => '«Описание» должно быть строкой.',
             'description.max' => '«Описание» не должно превышать 50000 символов.',
+
+            'text.string' => '«Выполненная работа» должна быть строкой.',
+            'text.max' => '«Выполненная работа» не должна превышать 50000 символов.',
 
             'price.required' => '«Цена» — обязательное поле.',
             'price.integer' => '«Цена» должна быть целым числом.',

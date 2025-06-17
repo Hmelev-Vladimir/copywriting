@@ -24,7 +24,7 @@ class RegisterRequest extends FormRequest
         return [
             'surname' => ['required', 'string', 'between:1,255'],
             'name' => ['required', 'string', 'between:1,255'],
-            'phone' => ['required', 'regex:/^\\+?[1-9][0-9]{7,14}$/i'],
+            'phone' => ['required', 'regex:/^\+?[1-9][0-9]?(?:\s?[0-9]{3}){2}\s?[0-9]{2}\s?[0-9]{2}$/i'],
             'email' => ['required', 'email', 'between:1,255', 'unique:users'],
             'login' => ['required', 'string', 'between:1,255', 'unique:users'],
             'password' => ['required', 'string', 'between:6,255', 'confirmed'],
@@ -46,7 +46,7 @@ class RegisterRequest extends FormRequest
             'name.between' => 'Длина «Имени» должна быть от :min до :max символов.',
 
             'phone.required' => '«Телефон» — обязательное поле.',
-            'phone.regex' => 'Неверный формат «Телефона». Пример: +71234567890.',
+            'phone.regex' => 'Неверный формат «Телефона». Пример: +7 937 110 17 01.',
 
             'email.required' => '«Email» — обязательное поле.',
             'email.email' => '«Email» должен быть действительным адресом.',

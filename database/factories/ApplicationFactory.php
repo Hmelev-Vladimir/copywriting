@@ -21,9 +21,8 @@ class ApplicationFactory extends Factory
             'theme' => fake()->sentence(1),
             'price' => fake()->numberBetween(1000, 10000),
             'description' => fake()->text(100),
-            // 'status' => fake()->randomElement(['Решена']),
-            'status' => fake()->randomElement(['Опубликовано', 'На модерации', 'В архиве', 'Откликнулись', 'Куплено']),
-            'reason' => fake()->text(100),
+            'status' => fake()->randomElement(['Новая','Опубликовано', 'На модерации', 'В архиве', 'Откликнулись', 'Куплено']),
+            'text' => fake()->text(100),
             'publicationDate' => fake()->dateTimeBetween('-1 year', 'now')
         ];
     }

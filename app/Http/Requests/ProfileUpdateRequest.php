@@ -25,7 +25,7 @@ class ProfileUpdateRequest extends FormRequest
         return [
             'surname' => ['required', 'string', 'between:1,255'],
             'name' => ['required', 'string', 'between:1,255'],
-            'phone' => ['required', 'regex:/^\\+?[1-9][0-9]{7,14}$/i'],
+            'phone' => ['required', 'regex:/^\+?[1-9][0-9]?(?:\s?[0-9]{3}){2}\s?[0-9]{2}\s?[0-9]{2}$/i'],
             'email' => ['required', 'email', 'between:1,255', Rule::unique('users')->ignore($this->id)],
             'login' => ['required', 'string', 'between:1,255', Rule::unique('users')->ignore($this->id)],
             'password' => ['required', 'string', 'between:6,255', 'confirmed']

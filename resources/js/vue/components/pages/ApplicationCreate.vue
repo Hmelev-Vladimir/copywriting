@@ -14,7 +14,7 @@ const application = reactive({
     price: 0,
     status: '',
     description: '',
-    reason: '',
+    text: '',
     publicationDate: '',
 });
 
@@ -25,8 +25,8 @@ const errors = reactive({
     theme: null,
     price: null,
     status: null,
+    text: null,
     description: null,
-    reason: null,
     publicationDate: null,
 });
 
@@ -39,6 +39,8 @@ function createApplication() {
     formData.append('title', application.title);
     formData.append('theme', application.theme);
     formData.append('price', application.price);
+    formData.append('status', application.status);
+    formData.append('text', application.text);
     formData.append('description', application.description);
     formData.append('publicationDate', application.publicationDate);
 

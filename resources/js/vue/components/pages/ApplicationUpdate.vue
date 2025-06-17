@@ -24,7 +24,7 @@ const application = reactive({
     price: 0,
     status: '',
     description: '',
-    reason: '',
+    text: '',
     publicationDate: '',
 });
 
@@ -36,7 +36,7 @@ const errors = reactive({
     price: null,
     status: null,
     description: null,
-    reason: null,
+    text: null,
     publicationDate: null,
 });
 
@@ -81,7 +81,9 @@ function updateApplication() {
     formData.append('title', application.title);
     formData.append('theme', application.theme);
     formData.append('price', application.price);
+    formData.append('status', application.status);
     formData.append('description', application.description);
+    formData.append('text', application.text);
     formData.append('publicationDate', application.publicationDate);
 
     axios.post('api/applications/update', formData)

@@ -46,6 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
         ->prefix('user')
         ->group(function () {
             Route::post('updatePic', [PicController::class, 'updatePic']);
+
+            Route::prefix('applications')-> group(function () {
+                Route::post('respond', [ApplicationController::class, 'respond']);
+            });
         });
 
     // Только для пользователей с ролью admin.

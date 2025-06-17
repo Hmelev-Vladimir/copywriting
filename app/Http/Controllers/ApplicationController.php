@@ -11,24 +11,47 @@ use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
+    /**
+     * Получает список заявок.
+     */
     public function getList(Request $request){
-        $applications = Application::orderBy('created_at','desc')->get();
+        $status = in_array($request->status, ['Новая','Опубликовано','На модерации','В архиве','Откликнулись','Куплено'])
+            ? $request->status : '';
+        $type = in_array($request->type, ['all','all-mine','customer','executor'])
+            ? $request->type : '';
+        $search = $request->search ?? '';
+
+        $where = [];
+
+        if ($status !== '') {
+            array_push($where, ['status', $status]);
+        }
+
+        $applications = Application::orderBy('created_at','desc')
+            ->filterByUserType($type, auth('sanctum')->user())
+            ->where($where)
+            ->search($search)
+            ->get();
         return response()->json([
             'applications' => $applications
         ], 200);
     }
 
+    /**
+     * Получает одну заявку.
+     */
     public function getApplication(Request $request){
         $application = Application::findOrFail($request->id);
         // $posts = $category->posts;
         return response()->json([
             'application' => $application
-        ],200);
-
+        ], 200);
     }
 
+    /**
+     * Создает объявление.
+     */
     public function create(ApplicationCreateRequest $request) {
-
        // Получение публичного диска.
         $disk = Storage::disk('public');
 
@@ -47,6 +70,9 @@ class ApplicationController extends Controller
         ], 200);
     }
 
+    /**
+     * Изменяет объявление.
+     */
     public function update(ApplicationUpdateRequest $request) {
         $application = Application::findOrFail($request->id);
 
@@ -82,6 +108,9 @@ class ApplicationController extends Controller
         ], 200);
     }
 
+    /**
+     * Удаляет заявку.
+     */
     public function delete(Request $request) {
         $application = Application::findOrFail($request->id);
 
@@ -93,5 +122,24 @@ class ApplicationController extends Controller
         }
         $application->delete();
         return response()->json(['msg' => 'Заявка была успешно удалена.'],200);
+    }
+
+    /**
+     * Отклик на заявку.
+     */
+    public function respond(Request $request) {
+        $application = Application::findOrFail($request->id);
+        $user = auth('sanctum')->user();
+
+        if ($application->executor_id !== null && $application->user_id === $user->id) {
+            abort(400);
+        }
+
+        $application->executor_id = $user->id;
+        $application->save();
+
+        return response()->json([
+            'message' => 'Отклик зарегестрирован.'
+        ], 200);
     }
 }

@@ -22,10 +22,19 @@ return new class extends Migration
                 $table->integer('price');
                 $table->text('description');
                 $table->string('status')->default('Новая');
-                $table->text('reason')->nullable();
+                $table->text('text')->nullable();
                 $table->dateTime('publicationDate');
 
+                // заказчик
                 $table->foreignId('user_id')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
+                // исполнитель
+                $table->foreignId('executor_id')
+                    ->nullable()
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade')

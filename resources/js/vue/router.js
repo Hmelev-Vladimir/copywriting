@@ -51,11 +51,13 @@ const routes = [
                 path: 'applications-admin',
                 name: 'ApplicationsAdmin',
                 component: ApplicationsAdmin,
+                meta: { role: 'admin' },
             },
             {
                 path: 'users-admin',
                 name: 'UsersAdmin',
                 component: UsersAdmin,
+                meta: { role: 'admin' },
             },
         ],
     },
@@ -70,24 +72,27 @@ const routes = [
         name: 'UserProfileUpdate',
         component: UserProfileUpdate,
         props: true,
+        //auth
     },
     {
         path: '/applications',
         name: 'Applications',
         component: Applications,
+        //auth
     },
     {
         path: '/applications/:id',
         name: 'ApplicationShow',
         component: ApplicationShow,
         props: true,
+        //auth
     },
     {
         path: '/applications/update/:id',
         name: 'ApplicationUpdate',
         component: ApplicationUpdate,
         props: true,
-        meta: { role: 'user', },
+        // auth
     },
     {
         path: '/applications/create',
